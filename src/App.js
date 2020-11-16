@@ -1,6 +1,6 @@
 import React from 'react'
 import { Layout } from 'antd'
-import { HashRouter, Route } from 'react-router-dom';
+import { HashRouter, Route, Redirect } from 'react-router-dom';
 
 import Header from './views/header'
 import Slider from './views/slider'
@@ -30,6 +30,7 @@ class App extends React.Component {
             <Header />
             <Content>
               <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+                  <Redirect to="/home" component={ Home } />
                   <Route exact path='/home' component={ Home }/> 
                   <Route path='/promotion' component={ Promotion }/>
               </div>
