@@ -71,3 +71,7 @@
   color: #FF0000;
   font-size: 20px;
 }
+
+.content-head .label {
+  margin-top: 10px;
+}

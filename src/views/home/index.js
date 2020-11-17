@@ -41,7 +41,7 @@ class Home extends React.Component{
               <p>
                 <Button type="primary" size="small">提现</Button>
               </p>
-              <p>
+              <p className="label">
                 <Button type="text" size="small">账户中心</Button>
               </p>
             </Col>
