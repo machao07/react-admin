@@ -1,0 +1,35 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+button,
+input,
+textarea,
+th,
+td {
+  margin: 0;
+  padding: 0
+}
+
+div>img {
+  vertical-align: middle;
+}
+
+input,
+textarea {
+  -webkit-user-select: text !important;
+  user-select: text !important;
+  cursor: pointer
+}

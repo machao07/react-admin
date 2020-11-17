@@ -11,6 +11,12 @@
   align-items: center;
 }
 
+.header .user-name {
+  font-size: 16px;
+  color: #333;
+  padding-right: 20px;
+}
+
 .header .logo {
   float: left;
   width: 180px;
@@ -27,15 +33,41 @@
   margin-top: -20px;
   left: 20px;
 }
-.header .user-name {
-  font-size: 16px;
-  color: #333;
-  padding-right: 20px;
-}
 
 /*  */
-
 .content-head {
   background: #fff;
   color: #666;
+}
+
+.content-head .seller .icon {
+  float: left;
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+  background-size: cover;
+  margin-right: 12px;
+  overflow: hidden;
+}
+
+.content-head .seller .icon img {
+  width: 100%;
+}
+
+.content-head .seller .seller-content {
+  margin-left: 60px;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.content-head .seller .seller-content .address {
+  font-size: 14px;
+  color: #666666;
+  line-height: 25px;
+  margin-top: 12px;
+}
+
+.content-head .price {
+  color: #FF0000;
+  font-size: 20px;
 }

@@ -29,7 +29,7 @@ class App extends React.Component {
           <Layout className="site-layout">
             <Header />
             <Content>
-              <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+              <div className="site-layout-background" style={{ padding: 18, minHeight: 360 }}>
                   <Redirect to="/home" component={ Home } />
                   <Route exact path='/home' component={ Home }/> 
                   <Route path='/promotion' component={ Promotion }/>

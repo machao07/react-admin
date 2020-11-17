@@ -13,6 +13,7 @@ body,
 }
 
 body {
+  font-size: 16px;
   font-family: 'PingFang SC', "Helvetica Neue", Helvetica, "microsoft yahei", arial, STHeiTi, sans-serif;
 }
 
@@ -40,4 +41,10 @@ body {
 
 .radius10{
   border-radius: 10px;
+}
+.br{
+  border-left: 1px solid #ccc;
+}
+.iconColor{
+  color: #f45f04;
 }
