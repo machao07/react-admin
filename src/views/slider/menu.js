@@ -1,4 +1,4 @@
-const router =  [
+const menuList =  [
   {
     path: '/home',
     name: '首页',
@@ -6,7 +6,7 @@ const router =  [
     icon: 'icon-home'
   },
   {
-    path: '',
+    path: '/order_mag',
     name: '订单管理',
     index: 'order_mag',
     icon: 'icon-gouwucheman',
@@ -20,4 +20,4 @@ const router =  [
   }
 ]
 
-export default router
+export default menuList

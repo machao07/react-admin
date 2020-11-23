@@ -1,4 +1,5 @@
 import React from 'react'
+import './style.css'
 import { Card, Row, Col, Button } from 'antd';
 import { PhoneOutlined, ScheduleOutlined } from '@ant-design/icons';
 

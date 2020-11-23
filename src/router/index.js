@@ -1,16 +1,20 @@
 import React from 'react'
-import {renderRoutes} from 'react-router-config';
-import {Switch, Route, BrowserRouter} from 'react-router-dom'
+import {Switch, Route, HashRouter} from 'react-router-dom'
 
-import Home from '../views/home'
-import Promotion from '../views/order_Manage/promotion'
+import App from '../App'
+import Login from '../views/login'
 
-export default class RouterIndex extends React.Component {
+class MRoute extends React.Component {
   render (){
     return(
-      <div>
-
-      </div>
+      <HashRouter>
+        <Switch>
+          <Route path="/login" component={ Login } />
+          <App />
+        </Switch>
+      </HashRouter>
     )
   }
 }
+
+export default MRoute

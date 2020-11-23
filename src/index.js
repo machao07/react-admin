@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import './style/common.css';
 import './style/reset.css';
-import './style/index.css';
-import App from './App';
+import MRoute from './router/index'
+// import App from './App';
 
 ReactDOM.render(
-    <App />,
+    <MRoute />,
   document.getElementById('root')
 );

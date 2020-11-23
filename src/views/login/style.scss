@@ -1,0 +1,68 @@
+.wrap{
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  .header {
+    height: 88px;
+    background: #ffffff;
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    line-height: 88px;
+    position: relative;
+    .logo {
+      width: 174px;
+      height: 60px;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      margin-top: -30px;
+    }
+    .companyName {
+      color: #666666;
+      font-size: 24px;
+      position: absolute;
+      height: 40px;
+      line-height: 40px;
+      left: 190px;
+      top: 50%;
+      margin-top: -20px;
+    }
+  }
+  
+  .login-box {
+    height: 610px;
+    font-size: 12px;
+    background: #e4e4e4 url("../../assets/login_bg.png") center top no-repeat;
+    width: 100%;
+    position: relative;
+    clear: both;
+  }
+  
+  .login-tab {
+    min-width: 340px;
+    position: absolute;
+    right: 200px;
+    background: #ffffff;
+    padding: 20px;
+    margin-top: 140px;
+    box-shadow: 0 0 10px #ddd;
+    border-radius: 5px;
+  }
+  .login-h {
+    font-size: 16px;
+    color: #333333;
+    margin-bottom: 20px;
+    font-weight: normal;
+    text-align: left;
+  }
+  .footer {
+    text-align: center;
+    color: #333;
+    font-size: 12px;
+    width: 100%;
+    padding: 30px 0;
+    line-height: 25px;
+  }
+}
