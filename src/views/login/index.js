@@ -1,11 +1,12 @@
 import React from 'react'
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox, notification } from 'antd';
 import { UserOutlined, LockFilled } from '@ant-design/icons';
+import { loginName } from '../../api/login'
+import { setToken } from '../../api/token'
 import './style.css'
 
 class Login extends React.Component{
   render(){
-
     const layout = {
       labelCol: { span: 0 },
       wrapperCol: { span: 24 },
@@ -14,14 +15,45 @@ class Login extends React.Component{
       wrapperCol: { offset: 0, span: 24 },
     };
 
+    // 表单提交
     const onFinish = values => {
       console.log('Success:', values);
+      loginName(values).then((res) =>{
+        let status = res.data.status;
+        if(res.data.token){
+          let lb = res.data.lb;
+          if(!lb) {
+            lb = "";
+          }
+          let bs = res.data.bs;
+          if(!bs) {
+              bs = "";
+          }
+          setToken(res.data.token);
+          localStorage.setItem("role", res.data.role);
+          localStorage.setItem("lb", lb);
+          localStorage.setItem("bs", bs);
+          notification.open({
+            message: '成功',
+            description: '登录成功',
+            type: 'success'
+          })
+          this.props.history.push('/home');
+        }else{
+          let errmsg = '登录失败'
+          if(status == '5'){
+            errmsg = '账户或密码错误'
+          }
+        }
+      }).catch(() => {
+
+      })
     };
 
     const onFinishFailed = errorInfo => {
       console.log('Failed:', errorInfo);
     };
-
+    
     return(
       <div className="wrap">
         <div className="header">

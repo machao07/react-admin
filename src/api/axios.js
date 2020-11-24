@@ -1,10 +1,11 @@
 import axios from 'axios'
+import { notification } from 'antd'
 import { HashRouter } from 'react-router-dom'
 import { getToken, removeToken } from './token'
 const router = new HashRouter()
 
 const instance = axios.create({
-  baseURL: process.env.NODE_ENV,
+  baseURL: process.env.NODE_ENV == 'development'? 'https://qa.huilianshenghua.com/api':'/api',
   timeout: 3000
 })
 
@@ -31,10 +32,10 @@ instance.interceptors.response.use(
       }
 
       if (res.code != "0") {
-          Message({
-              message: res.message,
-              type: 'error',
-              duration: 5 * 1000
+          notification.open({
+              message: '失败',
+              description: res.message,
+              type: 'error'
           });
           return Promise.reject(res);
       } else {
