@@ -2,6 +2,7 @@ import React from 'react'
 import './style.css'
 import { Card, Row, Col, Button } from 'antd';
 import { PhoneOutlined, ScheduleOutlined } from '@ant-design/icons';
+import { getSellerName } from '../../utils/storage'
 
 const style = { background: '#0092ff', padding: '8px 0' };
 const headBackground = 'http://obs.dynamic.huilianshenghua.com/2020/04-13/i70riuwn5v3okibmf6a4vqjm25perz7v.jpg'
@@ -16,7 +17,7 @@ class Home extends React.Component{
               <div className="seller">
                   <div className="icon" style={{backgroundImage: `url(${headBackground}`}}></div>
                   <div className="seller-content">
-                      <div className="title">宇智波鼬的水果店</div>
+                  <div className="title">{getSellerName()}</div>
                       <div className="address">
                           <PhoneOutlined className="iconColor mr5"/>
                           <span className="mr5">18651601160</span>

@@ -21,9 +21,15 @@ class Login extends React.Component{
       loginName(values).then((res) =>{
         let status = res.data.status;
         if(res.data.token){
+          // 结算主体
           let lb = res.data.lb;
           if(!lb) {
             lb = "";
+          }
+          //商户信息
+          let si = res.data.si;
+          if(!si) {
+              si = "";
           }
           let bs = res.data.bs;
           if(!bs) {
@@ -32,6 +38,7 @@ class Login extends React.Component{
           setToken(res.data.token);
           localStorage.setItem("role", res.data.role);
           localStorage.setItem("lb", lb);
+          localStorage.setItem("si", si);
           localStorage.setItem("bs", bs);
           notification.open({
             message: '成功',

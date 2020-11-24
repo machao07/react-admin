@@ -3,6 +3,7 @@ import './style.css'
 import { Menu, Dropdown } from 'antd';
 import { UserOutlined, CaretDownOutlined } from '@ant-design/icons';
 import { removeToken } from '../../api/token'
+import { getLoginName } from '../../utils/storage'
 const menu = (
   <Menu>
     <Menu.Item key="1">修改密码</Menu.Item>
@@ -16,6 +17,7 @@ class Header extends React.Component {
     //   removeToken()
     //   this.props.history.push('/login')
     // }
+    // 
     return (
       <div className="header">
         <div className="logo">
@@ -25,7 +27,7 @@ class Header extends React.Component {
         <div>
           <Dropdown overlay={menu}>
             <a className="user-name">
-              <UserOutlined className="ft14 mr5"/>18645548332<CaretDownOutlined className="ft14 ml5"/>
+              <UserOutlined className="ft14 mr5"/>{getLoginName()}<CaretDownOutlined className="ft14 ml5"/>
             </a>
           </Dropdown>
         </div>
