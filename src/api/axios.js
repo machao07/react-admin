@@ -1,4 +1,7 @@
 import axios from 'axios'
+import { HashRouter } from 'react-router-dom'
+import { getToken, removeToken } from './token'
+const router = new HashRouter()
 
 const instance = axios.create({
   baseURL: process.env.NODE_ENV,
@@ -7,12 +10,37 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   config => {
-
+      let token = getToken();
+      if (token && token !== undefined && token !== "" && token !== "undefined") {
+          config.headers['Authorization'] = "Bearer " + token;
+      }
+      return config;
+  },
+  error => {
+      Promise.reject(error);
   }
 )
 
 instance.interceptors.response.use(
   response => {
+    const res = response.data;
+      if(res.code === 401) {
+          //尚未登录
+          removeToken();
+          router.history.push('/login');
+      }
 
+      if (res.code != "0") {
+          Message({
+              message: res.message,
+              type: 'error',
+              duration: 5 * 1000
+          });
+          return Promise.reject(res);
+      } else {
+          return res;
+      }
   }
 )
+
+export default instance
