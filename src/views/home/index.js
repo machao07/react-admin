@@ -68,13 +68,8 @@ class Home extends React.Component{
 
     // 获取金额
     getAmount(getSellerId()).then((res) => {
-      let data = res.data
       this.setState({
-        report:{
-          orderPayMoneyToday: data.orderPayMoneyToday,
-          salesAmountMonth: data.salesAmountMonth,
-          balance: data.balance
-        }
+        report : res.data
       })
     })
     // 今日收入
@@ -103,7 +98,6 @@ class Home extends React.Component{
     })
 
     Promise.allSettled([todayRevenueApi, todayPayApi, memberDataApi]).then( res => {
-      console.log(res)
       this.setState({
         todayRevenue: res[0].value.data,
         todayPay: res[1].value.data,
@@ -117,9 +111,6 @@ class Home extends React.Component{
   render(){
     return(
       <div>
-        {
-          console.log(this.state)
-        }
         <div className="content-head radius5 mb20">
           <Card hoverable={true}>
             <Row gutter={20}>
