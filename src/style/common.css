@@ -38,7 +38,15 @@ body {
 .ml10{
   margin-left: 10px;;
 }
-
+.mr15{
+  margin-right: 15px;;
+}
+.ml15{
+  margin-left: 15px;;
+}
+.mb20{
+  margin-bottom: 20px;
+}
 .radius10{
   border-radius: 10px;
 }

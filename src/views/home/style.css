@@ -38,3 +38,33 @@
 .content-head .label {
   margin-top: 10px;
 }
+
+.homeCard .title {
+  font-size: 20px;
+}
+
+.homeCard .text {
+  font-size: 14px;
+  line-height: 1.8;
+  margin-top: 40px;
+}
+
+.homeCard .other {
+  margin-top: 15px;
+}
+
+.homeCard .text + .text {
+  margin-top: 0;
+}
+
+.homeCard .text p {
+  display: inline-block;
+}
+
+.homeCard .text p + p {
+  margin-left: 60px;
+}
+
+.member .fontStyle {
+  font-size: 30px
+}

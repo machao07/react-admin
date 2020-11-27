@@ -40,3 +40,28 @@
     margin-top: 10px;
   }
 }
+
+// card
+.homeCard{
+  background: #fff;
+  .title{
+    font-size: 20px;
+  }
+  .text{
+    font-size: 14px;
+    line-height: 1.8;
+    margin-top: 40px;
+    p{
+      display: inline-block;
+    }
+    p + p{
+      margin-left: 60px;
+    }
+  }
+  .text + .text{
+    margin-top: 0;
+  }
+  .other{
+    margin-top: 15px;
+  }
+}

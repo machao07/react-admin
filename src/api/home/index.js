@@ -15,3 +15,27 @@ export function getAmount(sellerId) {
         method: "get"
     });
 }
+
+// 今日收入
+export function getTodayRevenue() {
+    return axios({
+        url: "/seller/na/app/seller/home",
+        method: "get"
+    });
+}
+
+// 会员人数
+export function getMemberData(sellerId) {
+    return axios({
+        url: "/seller/na/platform/statistics/home/other/" + sellerId,
+        method: "get"
+    });
+}
+
+// 今日支付
+export function getTodayPay() {
+    return axios({
+        url: "/seller/na/app/seller/today/amount/info",
+        method: "get"
+    });
+}
