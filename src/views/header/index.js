@@ -1,23 +1,30 @@
 import React from 'react'
+import { HashRouter } from 'react-router-dom'
 import './style.css'
 import { Menu, Dropdown } from 'antd';
 import { UserOutlined, CaretDownOutlined } from '@ant-design/icons';
 import { removeToken } from '../../api/token'
 import { getLoginName } from '../../utils/storage'
+const router = new HashRouter()
+
+const handleMenuClick = ({key}) => {
+  if(key === 'layout'){
+    removeToken()
+    window.location.hash = '#login'
+  }
+  if(key === 'modify'){
+    window.location.hash = '#modify'
+  }
+}
+
 const menu = (
-  <Menu>
-    <Menu.Item key="1">修改密码</Menu.Item>
-    <Menu.Item key="2">退出登录</Menu.Item>
+  <Menu onClick={handleMenuClick}>
+    <Menu.Item key="modify">修改密码</Menu.Item>
+    <Menu.Item key="layout">退出登录</Menu.Item>
   </Menu>
 )
 class Header extends React.Component {
   render(){
-    // 退出登录
-    // const layout = () => {
-    //   removeToken()
-    //   this.props.history.push('/login')
-    // }
-    // 
     return (
       <div className="header">
         <div className="logo">

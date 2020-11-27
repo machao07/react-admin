@@ -6,6 +6,7 @@ import Header from './views/header'
 import Slider from './views/slider'
 
 import Home from './views/home'
+import Modify from './views/modify_password'
 import Promotion from './views/order_Manage/promotion'
 
 const { Content, Footer, Sider } = Layout;
@@ -30,10 +31,11 @@ class App extends React.Component {
             <Content className="site-layout-background" style={{ padding: 10, height: '100%', overflowY: 'scroll' }}>
               <Switch>
                 <Route exact path="/home" component={ Home } />
+                <Route exact path="/modify" component={ Modify } />
                 <Route path='/promotion' component={ Promotion }/>
               </Switch>
             </Content>
-            <Footer className="tc">Ant Design ©2020 Created by Ant UED</Footer>
+            <Footer className="tc">React and Ant Design ©2020 Created by Machao </Footer>
           </Layout>
         </Layout>
     )

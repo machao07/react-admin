@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Input, Button, Checkbox, notification } from 'antd';
+import { Form, Input, Button, Checkbox, notification, message } from 'antd';
 import { UserOutlined, LockFilled } from '@ant-design/icons';
 import { loginName } from '../../api/login'
 import { setToken } from '../../api/token'
@@ -17,7 +17,7 @@ class Login extends React.Component{
 
     // 表单提交
     const onFinish = values => {
-      console.log('Success:', values);
+      // console.log('Success:', values);
       loginName(values).then((res) =>{
         let status = res.data.status;
         if(res.data.token){
@@ -51,6 +51,10 @@ class Login extends React.Component{
           if(status == '5'){
             errmsg = '账户或密码错误'
           }
+          message.open({
+            content: errmsg,
+            type: 'error',
+          });
         }
       }).catch(() => {
 
