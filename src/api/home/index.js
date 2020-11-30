@@ -39,3 +39,12 @@ export function getTodayPay() {
         method: "get"
     });
 }
+
+// 修改密码
+export function modifyPassword(obj) {
+    return axios({
+        url: '/seller/na/platform/statistics/home/modify/password',
+        method: 'get',
+        params: obj
+    });
+}

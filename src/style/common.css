@@ -47,6 +47,12 @@ body {
 .mb20{
   margin-bottom: 20px;
 }
+.w300{
+  width: 300px;
+}
+.w600{
+  width: 600px;
+}
 .radius10{
   border-radius: 10px;
 }
@@ -55,4 +61,10 @@ body {
 }
 .iconColor{
   color: #f45f04;
+}
+.container{
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  padding: 30px;
 }

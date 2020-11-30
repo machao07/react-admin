@@ -28,7 +28,7 @@ class App extends React.Component {
           </Sider>
           <Layout className="site-layout">
             <Header />
-            <Content className="site-layout-background" style={{ padding: 10, height: '100%', overflowY: 'scroll' }}>
+            <Content className="site-layout-background" style={{ padding: 10, height: '100%', overflowY: 'scroll', }}>
               <Switch>
                 <Route exact path="/home" component={ Home } />
                 <Route exact path="/modify" component={ Modify } />
