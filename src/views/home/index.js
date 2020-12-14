@@ -111,7 +111,7 @@ class Home extends React.Component{
   render(){
     return(
       <div>
-        <div className="content-head radius5 mb20">
+        <div className="content-head mb20">
           <Card hoverable={true}>
             <Row gutter={20}>
               <Col span={8}>

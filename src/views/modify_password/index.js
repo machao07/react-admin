@@ -52,28 +52,28 @@ class ModifyPassword extends React.Component{
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}>
                     <Form.Item
-                    label="原始密码："
-                    name="oldPassWord"
-                    rules={[{ required: true, message: '密码不能为空' }]}>
-                    <Input.Password className="w300" placeholder="请输入原始密码" />
+                        label="原始密码："
+                        name="oldPassWord"
+                        rules={[{ required: true, message: '密码不能为空' }]}>
+                        <Input.Password className="w300" placeholder="请输入原始密码" />
                     </Form.Item>
 
                     <Form.Item
-                    label="新密码："
-                    name="newPassWord"
-                    rules={[{ required: true, message: '密码不能为空' }]}>
-                    <Input.Password className="w300" placeholder="请输入新密码" />
+                        label="新密码："
+                        name="newPassWord"
+                        rules={[{ required: true, message: '密码不能为空' }]}>
+                        <Input.Password className="w300" placeholder="请输入新密码" />
                     </Form.Item>
 
                     <Form.Item
-                    label="确认新密码："
-                    name="re_newPassWord"
-                    rules={[{ required: true, message: '密码不能为空' }]}>
-                    <Input.Password className="w300" placeholder="请输入确认新密码"  />
+                        label="确认新密码："
+                        name="re_newPassWord"
+                        rules={[{ required: true, message: '密码不能为空' }]}>
+                        <Input.Password className="w300" placeholder="请输入确认新密码"  />
                     </Form.Item>
 
                     <Form.Item {...tailLayout}>
-                    <Button type="primary" htmlType="submit">保存</Button>
+                        <Button type="primary" htmlType="submit">保存</Button>
                     </Form.Item>
                 </Form>
             </div>

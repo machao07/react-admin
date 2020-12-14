@@ -7,7 +7,7 @@ import Slider from './views/slider'
 
 import Home from './views/home'
 import Modify from './views/modify_password'
-import Promotion from './views/order_Manage/promotion'
+import Promotion from './views/order_Manage/promotion.tsx'
 
 const { Content, Footer, Sider } = Layout;
 class App extends React.Component {

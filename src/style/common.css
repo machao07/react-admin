@@ -47,11 +47,17 @@ body {
 .mb20{
   margin-bottom: 20px;
 }
+.w200{
+  width: 200px;
+}
 .w300{
   width: 300px;
 }
 .w600{
   width: 600px;
+}
+.radius8{
+  border-radius: 8px;
 }
 .radius10{
   border-radius: 10px;
@@ -67,4 +73,11 @@ body {
   border-radius: 5px;
   border: 1px solid #ddd;
   padding: 30px;
+}
+
+.list-filter {
+  position: relative;
+  margin: 20px 0;
+  background: #f8f8f8;
+  padding: 20px 10px 1px;
 }
