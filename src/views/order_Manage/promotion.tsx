@@ -2,6 +2,8 @@ import React from 'react'
 import { Form, Input, Button, DatePicker, Table } from 'antd'
 import { getSellerId } from '../../utils/storage'
 import { getList } from '../../api/order'
+import 'moment/locale/zh-cn';
+import locale from 'antd/es/date-picker/locale/zh_CN';
 
 const { RangePicker } = DatePicker;
 
@@ -60,14 +62,14 @@ class Promotion extends React.Component<PropsType, State>{
       console.log(dateString)
     }
     const columns:any = [
-      { title: '订单编号', dataIndex: 'orderId', key: 'orderId' },
-      { title: '活动名称', dataIndex: 'activityName',key: 'activityName' },
-      { title: '购买用户昵称', dataIndex: 'memberName', key: 'memberName' },
-      { title: '绑定手机号', dataIndex: 'mobile',key: 'mobile' },
-      { title: '分享人', dataIndex: 'sharer', key: 'sharer' },
-      { title: '下单时间', dataIndex: 'timeAt', key: 'timeAt' },
-      { title: '订单金额', dataIndex: 'payMoney', key: 'payMoney' },
-      { title: '手续费', dataIndex: 'payOther', key: 'payOther' },
+      { title: '订单编号', dataIndex: 'orderId', key: 'orderId', width: 180 },
+      { title: '活动名称', dataIndex: 'activityName',key: 'activityName', width: 150 },
+      { title: '购买用户昵称', dataIndex: 'memberName', key: 'memberName', width: 120 },
+      { title: '绑定手机号', dataIndex: 'mobile',key: 'mobile', width: 150 },
+      { title: '分享人', dataIndex: 'sharer', key: 'sharer', width: 180 },
+      { title: '下单时间', dataIndex: 'timeAt', key: 'timeAt', width: 150 },
+      { title: '订单金额', dataIndex: 'payMoney', key: 'payMoney', width: 100 },
+      { title: '手续费', dataIndex: 'payOther', key: 'payOther', width: 100 },
       {
         title: '操作',
         key: 'operation',
@@ -105,7 +107,7 @@ class Promotion extends React.Component<PropsType, State>{
                 <Form.Item
                     label="下单时间："
                     name="listQuery.order_time">
-                    <RangePicker onChange={onChange}/>
+                    <RangePicker onChange={onChange} locale={locale}/>
                 </Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit">搜索</Button>
