@@ -17,6 +17,7 @@ class App extends React.Component {
 
   onCollapse = collapsed => {
     console.log(collapsed);
+    console.log(22222)
     this.setState({ collapsed });
   };
   render(){

@@ -44,6 +44,12 @@ body {
 .ml15{
   margin-left: 15px;;
 }
+.mb10{
+  margin-bottom: 10px;
+}
+.mb15{
+  margin-bottom: 15px;
+}
 .mb20{
   margin-bottom: 20px;
 }
@@ -79,5 +85,9 @@ body {
   position: relative;
   margin: 20px 0;
   background: #f8f8f8;
-  padding: 20px 10px 1px;
+  padding: 20px 10px;
+}
+
+.filter .ant-form-item{
+  margin-bottom: 10px;
 }
