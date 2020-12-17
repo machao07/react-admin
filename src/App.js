@@ -16,8 +16,6 @@ class App extends React.Component {
   };
 
   onCollapse = collapsed => {
-    console.log(collapsed);
-    console.log(22222)
     this.setState({ collapsed });
   };
   render(){
@@ -29,7 +27,14 @@ class App extends React.Component {
           </Sider>
           <Layout className="site-layout">
             <Header />
-            <Content className="site-layout-background" style={{ padding: 10, height: '100%', overflowY: 'scroll', }}>
+            <Content className={collapsed == true ? 'noLeft' : 'left'} style={{ position: 'absolute',top: 70,right: 0,bottom: 0 }}>
+              <div className="content">
+                <Switch>
+                  <Route exact path="/home" component={ Home } />
+                  <Route exact path="/modify" component={ Modify } />
+                  <Route path='/promotion' component={ Promotion }/>
+                </Switch>
+              </div>
               <Switch>
                 <Route exact path="/home" component={ Home } />
                 <Route exact path="/modify" component={ Modify } />

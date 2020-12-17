@@ -81,6 +81,26 @@ body {
   padding: 30px;
 }
 
+.left{
+  left: 200px;
+  -webkit-transition: left .1s ease-in-out;
+  transition: left .1s ease-in-out;
+}
+.noLeft{
+  left: 80px;
+  -webkit-transition: left .1s ease-in-out;
+  transition: left .1s ease-in-out;
+}
+
+.content{
+  width: auto;
+  padding: 10px;
+  height: 100%;
+  overflow-y: scroll;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 .list-filter {
   position: relative;
   margin: 20px 0;
