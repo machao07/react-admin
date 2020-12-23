@@ -32,17 +32,18 @@ class Promotion extends React.Component<PropsType, State>{
         targetId: getSellerId(),
         targetType: 1,
         page: 1,
-        num: 20,
+        num: 20
       },
       list: [],
       loading: false,
     }
+    this.getListApi = this.getListApi.bind(this)
   }
   componentDidMount(){
-    this.getList()
+    this.getListApi()
   }
   // 列表接口
-  getList = () => {
+  getListApi() {
     this.setState({loading: true});
     getList(this.state.listQuery).then( res =>{
       this.setState({
@@ -53,6 +54,18 @@ class Promotion extends React.Component<PropsType, State>{
   }
   render(){
     const onFinish = (values: object) => {
+      // const { activityName, memberName, mobile, order_time } = values
+        this.setState({
+          // listQuery:{
+          //   activityName: activityName,
+          //   memberName: memberName,
+          //   mobile: mobile,
+          //   order_time: order_time,
+          //   start: ,
+          //   end:   
+          // }
+        })
+        this.getListApi()
         console.log('success', values)
     }
     const onFinishFailed = (errorInfo: object) => {
@@ -60,6 +73,10 @@ class Promotion extends React.Component<PropsType, State>{
     }
     const onChange = (date:any, dateString:any) => {
       console.log(dateString)
+      const newListQuery = Object.assign({},this.state.listQuery,{order_time: dateString})
+      this.setState({
+        listQuery: newListQuery
+      })
     }
     const columns:any = [
       { title: '订单编号', dataIndex: 'orderId', key: 'orderId', width: 180 },
@@ -73,6 +90,7 @@ class Promotion extends React.Component<PropsType, State>{
       {
         title: '操作',
         key: 'operation',
+        align: 'center',
         fixed: 'right',
         width: 100,
         render: () => <a>查看</a>,
@@ -81,6 +99,7 @@ class Promotion extends React.Component<PropsType, State>{
     const { list, loading } = this.state;
     return(
       <div className="container">
+          {/* {JSON.stringify(this.state.listQuery)} */}
           <div className="ikd-page-header"><div className="title">推广活动管理</div></div>
           <div className="list-filter">
             <Form
@@ -91,22 +110,22 @@ class Promotion extends React.Component<PropsType, State>{
                 onFinishFailed={onFinishFailed}>
                 <Form.Item
                     label="活动名称："
-                    name="listQuery.activityName">
+                    name="activityName">
                     <Input className="w200" placeholder="请输入活动名称" />
                 </Form.Item>
                 <Form.Item
                     label="购买用户昵称："
-                    name="listQuery.memberName">
+                    name="memberName">
                     <Input className="w200" placeholder="请输入购买用户昵称" />
                 </Form.Item>
                 <Form.Item
                     label="绑定手机号："
-                    name="listQuery.mobile">
+                    name="mobile">
                     <Input className="w200" placeholder="请输入手机号码" />
                 </Form.Item>
                 <Form.Item
                     label="下单时间："
-                    name="listQuery.order_time">
+                    name="order_time">
                     <RangePicker onChange={onChange} locale={locale}/>
                 </Form.Item>
                 <Form.Item>

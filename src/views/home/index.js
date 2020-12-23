@@ -15,38 +15,41 @@ const headBackground = 'http://obs.dynamic.huilianshenghua.com/2020/04-13/i70riu
 
 class Home extends React.Component{
   // 声明
-  state = {
-    sellerInfo:{
-      picture: undefined,
-      contactPhone: undefined,
-    },
-    report: {
-      orderPayMoneyToday: undefined,
-      salesAmountMonth: undefined,
-      balance: undefined
-    },
-    todayRevenue:{
-      orderAmount: undefined,
-      orderCount: undefined, //笔数
-      couponAmount: undefined,
-      couponCount: undefined, //笔数
-      otherAmount: undefined,
-      otherCount: undefined //笔数
-    },
-    todayPay:{
-        userPayMoney: undefined,
-        payFee: undefined,
-        closerAmount: undefined,
-        getFee: undefined,
-        feeAmount: undefined,
-        recommedAmount: undefined,
-        couponRecommedAmount: undefined,
-        couponFeeAmount: undefined
-    },
-    memberdData: {
-        allOtherAmount: undefined,
-        todayMemberCount: undefined,
-        allMemberCount: undefined
+  constructor(props){
+    super(props);
+    this.state = {
+      sellerInfo:{
+        picture: undefined,
+        contactPhone: undefined,
+      },
+      report: {
+        orderPayMoneyToday: undefined,
+        salesAmountMonth: undefined,
+        balance: undefined
+      },
+      todayRevenue:{
+        orderAmount: undefined,
+        orderCount: undefined, //笔数
+        couponAmount: undefined,
+        couponCount: undefined, //笔数
+        otherAmount: undefined,
+        otherCount: undefined //笔数
+      },
+      todayPay:{
+          userPayMoney: undefined,
+          payFee: undefined,
+          closerAmount: undefined,
+          getFee: undefined,
+          feeAmount: undefined,
+          recommedAmount: undefined,
+          couponRecommedAmount: undefined,
+          couponFeeAmount: undefined
+      },
+      memberdData: {
+          allOtherAmount: undefined,
+          todayMemberCount: undefined,
+          allMemberCount: undefined
+      }
     }
   }
 
