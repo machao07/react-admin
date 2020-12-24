@@ -2,8 +2,6 @@ import React from 'react'
 import { Form, Input, Button, DatePicker, Table } from 'antd'
 import { getSellerId } from '../../utils/storage'
 import { getList } from '../../api/order'
-import 'moment/locale/zh-cn';
-import locale from 'antd/es/date-picker/locale/zh_CN';
 
 const { RangePicker } = DatePicker;
 
@@ -129,7 +127,7 @@ class Promotion extends React.Component<PropsType, State>{
                 <Form.Item
                     label="下单时间："
                     name="order_time">
-                    <RangePicker onChange={onChange} locale={locale}/>
+                    <RangePicker onChange={onChange}/>
                 </Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit">搜索</Button>
