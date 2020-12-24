@@ -40,12 +40,12 @@ class Promotion extends React.Component<PropsType, State>{
     // this.getListApi = this.getListApi.bind(this)
   }
   componentDidMount(){
-    this.getListApi()
+    this.getListApi(this.state.listQuery)
   }
   // 列表接口
-  getListApi() {
+  getListApi(listQuery:object) {
     this.setState({loading: true});
-    getList(this.state.listQuery).then( res =>{
+    getList(listQuery).then( res =>{
       this.setState({
         loading: false,
         list: res.data.list,
@@ -60,7 +60,7 @@ class Promotion extends React.Component<PropsType, State>{
         this.setState({
           listQuery: _listQuery
         })
-        this.getListApi()
+        this.getListApi(this.state.listQuery)
         // console.log(this.state.listQuery)
     }
     const onFinishFailed = (errorInfo: object) => {
@@ -90,12 +90,18 @@ class Promotion extends React.Component<PropsType, State>{
         render: () => <a>查看</a>,
       }
     ];
-    const changePage = (page:number)=>{
-      const query = Object.assign({},this.state.listQuery,{page: page})
-      this.setState({
-        listQuery: query
-      })
-      this.getListApi()
+    // 分页切换
+    const changePage = (current:number)=>{
+      console.log(current)
+      const query = Object.assign({},this.state.listQuery,{page: current})
+      console.log('query',query)
+      setTimeout(() => {
+        this.setState({
+          listQuery: query
+        })
+        console.log(this.state.listQuery)
+        this.getListApi(this.state.listQuery)
+      },0)
     }
     const { list, loading } = this.state;
     return(
@@ -135,13 +141,14 @@ class Promotion extends React.Component<PropsType, State>{
             </Form>
           </div>
           <Table dataSource={list} columns={columns} rowKey="orderId"
-              loading={loading} scroll={{y: 500}} 
+              loading={loading} scroll={{y: '500px'}} 
               pagination={{
                 total: this.state.total,
                 current: this.state.listQuery.page,
                 showQuickJumper: true,
                 showSizeChanger: true,
                 showTotal: total => `共 ${total} 条`,
+                onChange: changePage
               }}/>
       </div>
     )
