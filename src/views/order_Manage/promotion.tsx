@@ -16,11 +16,12 @@ export interface State{
       activityName?: string,
       memberName?: string,
       mobile?: number|string,
-      order_time?: string[],
       start?: number,
       end?: number
     },
+    order_time?: string[],
     list: object[],
+    total: any,
     loading: boolean,
 }
 type PropsType = {}
@@ -35,9 +36,10 @@ class Promotion extends React.Component<PropsType, State>{
         num: 20
       },
       list: [],
+      total: 0,
       loading: false,
     }
-    this.getListApi = this.getListApi.bind(this)
+    // this.getListApi = this.getListApi.bind(this)
   }
   componentDidMount(){
     this.getListApi()
@@ -48,32 +50,26 @@ class Promotion extends React.Component<PropsType, State>{
     getList(this.state.listQuery).then( res =>{
       this.setState({
         loading: false,
-        list: res.data.list
+        list: res.data.list,
+        total: res.data.total
       })
     }).catch(()=>{})
   }
   render(){
     const onFinish = (values: object) => {
-      // const { activityName, memberName, mobile, order_time } = values
+        const { activityName, memberName, mobile } = JSON.parse(JSON.stringify(values))
+        const _listQuery = Object.assign({}, this.state.listQuery, {activityName, memberName, mobile})
         this.setState({
-          // listQuery:{
-          //   activityName: activityName,
-          //   memberName: memberName,
-          //   mobile: mobile,
-          //   order_time: order_time,
-          //   start: ,
-          //   end:   
-          // }
+          listQuery: _listQuery
         })
         this.getListApi()
-        console.log('success', values)
+        // console.log(this.state.listQuery)
     }
     const onFinishFailed = (errorInfo: object) => {
         console.log('failes', errorInfo)
     }
     const onChange = (date:any, dateString:any) => {
-      console.log(dateString)
-      const newListQuery = Object.assign({},this.state.listQuery,{order_time: dateString})
+      const newListQuery = Object.assign({},this.state.listQuery,{start: dateString[0],end: dateString[1]})
       this.setState({
         listQuery: newListQuery
       })
@@ -96,6 +92,13 @@ class Promotion extends React.Component<PropsType, State>{
         render: () => <a>查看</a>,
       }
     ];
+    const changePage = (page:number)=>{
+      const query = Object.assign({},this.state.listQuery,{page: page})
+      this.setState({
+        listQuery: query
+      })
+      this.getListApi()
+    }
     const { list, loading } = this.state;
     return(
       <div className="container">
@@ -133,8 +136,15 @@ class Promotion extends React.Component<PropsType, State>{
                 </Form.Item>
             </Form>
           </div>
-
-          <Table dataSource={list} columns={columns} rowKey="orderId" loading={loading} scroll={{y: 500}} />
+          <Table dataSource={list} columns={columns} rowKey="orderId"
+              loading={loading} scroll={{y: 500}} 
+              pagination={{
+                total: this.state.total,
+                current: this.state.listQuery.page,
+                showQuickJumper: true,
+                showSizeChanger: true,
+                showTotal: total => `共 ${total} 条`,
+              }}/>
       </div>
     )
   }
