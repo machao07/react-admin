@@ -3,7 +3,8 @@ import './style.css'
 import { Card, Row, Col, Button } from 'antd';
 import { PhoneOutlined, ScheduleOutlined } from '@ant-design/icons';
 import { createFromIconfontCN } from '@ant-design/icons';
-import { getSellerName, getSellerId } from '../../utils/storage'
+import { getSellerName, getSellerId } from '../../utils/storage';
+import DateFilter from '../../utils/dateFilter';
 import { getSellerInfo, getAmount, getTodayRevenue, getMemberData, getTodayPay, dashBoard } from '../../api/home'
 import ReactEcharts from 'echarts-for-react'
 // import echarts from 'echarts/lib/echarts';
@@ -54,10 +55,7 @@ class Home extends React.Component{
           todayMemberCount: undefined,
           allMemberCount: undefined
       },
-      dateChart: [],
-      memberChart: [],
-      dealChart: [],
-      commissionChart: []
+      option: {}
     }
   }
 
@@ -121,14 +119,13 @@ class Home extends React.Component{
     // 数据统计
     dashBoard(getSellerId()).then( res => {
       let report = res.data;
-      console.log(report)
-      let getFeeStatistics = this.report.getFeeStatistics;
-      let memberStatistics = this.report.memberStatistics;
-      let orderNumStatistics = this.report.orderNumStatistics;
+      let getFeeStatistics = report.getFeeStatistics;
+      let memberStatistics = report.memberStatistics;
+      let orderNumStatistics = report.orderNumStatistics;
       let date = [];
       let memberData = [], feeData = [], orderData = [];
       getFeeStatistics.forEach((value)=>{
-          date.push(value.date);
+          date.push(DateFilter.parseTime(value.date, '{y}-{m}-{d}'));
           feeData.push(value.amount);
       });
 
@@ -139,52 +136,53 @@ class Home extends React.Component{
       orderNumStatistics.forEach((value)=>{
           orderData.push(value.amount);
       });
+      const option =  {
+          title: {
+            text: ''
+          },
+          tooltip: {
+            trigger: 'axis'
+          },
+          legend: {
+            data: ['会员', '交易', '佣金']
+          },
+          grid: {
+              left: '2%',
+              right: '2%',
+              bottom: '2%',
+              containLabel: true
+          },
+          xAxis: {
+            type: 'category',
+            data: date
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [
+            {
+              name: '会员',
+              type: 'line',
+              data:  memberData
+            },
+            {
+              name: '交易',
+              type: 'line',
+              data:  orderData
+            },
+            {
+              name: '佣金',
+              type: 'line',
+              data:  feeData
+            }
+          ]
+      }
       this.setState({
-        dateChart: date,
-        memberChart: memberData,
-        dealChart: orderData,
-        commissionChart: feeData
+        option: option
       })
     }).catch(() => {})
   }
   render(){
-    const getOption = () => {
-      return {
-        title: {
-          text: ''
-        },
-        tooltip: {
-          trigger: 'axis'
-        },
-        legend: {
-          data: ['会员', '交易', '佣金']
-        },
-        xAxis: {
-          type: 'category',
-          data: this.state.dateChart
-        },
-        yAxis: {
-          type: 'value'
-        },
-        series: [
-          {
-            name: '会员',
-            type: 'line',
-            data:  this.state.memberChart
-          },
-          {
-            name: '交易',
-            type: 'line',
-            data:  this.state.dealChart
-          },
-          {
-            name: '佣金',
-            type: 'line',
-            data:  this.state.commissionChart
-          }
-        ]
-      }
-    }
     return(
       <div>
         <div className="content-head mb20">
@@ -310,7 +308,7 @@ class Home extends React.Component{
       
         {/* 数据统计 */}
         <Card title="数据统计">
-          <ReactEcharts option={getOption()}/>
+          <ReactEcharts option={this.state.option}/>
         </Card>
       </div>
     )
