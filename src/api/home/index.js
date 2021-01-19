@@ -48,3 +48,11 @@ export function modifyPassword(obj) {
         params: obj
     });
 }
+
+// 数据统计
+export function dashBoard(sellerId) {
+    return axios({
+        url: "/seller/na/platform/statistics/home/counting/" + sellerId,
+        method: "get"
+    });
+}
