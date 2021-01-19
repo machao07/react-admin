@@ -66,5 +66,9 @@
 }
 
 .member .fontStyle {
-  font-size: 30px
+  font-size: 30px;
+}
+
+.member .title{
+  font-weight: 600;
 }

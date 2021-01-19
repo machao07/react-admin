@@ -148,12 +148,13 @@ class Home extends React.Component{
           },
           grid: {
               left: '2%',
-              right: '2%',
+              right: '4%',
               bottom: '2%',
               containLabel: true
           },
           xAxis: {
             type: 'category',
+            boundaryGap: false,
             data: date
           },
           yAxis: {
