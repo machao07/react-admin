@@ -13,7 +13,7 @@ const menuList =  [
     subs: [
       {
         path: '/promotion',
-        name: '推广活动订单',
+        name: '股东活动订单',
         index: 'promotion',
       }
     ]

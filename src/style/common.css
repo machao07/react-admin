@@ -111,3 +111,7 @@ body {
 .filter .ant-form-item{
   margin-bottom: 10px;
 }
+
+.detail{
+  line-height: 1.8;
+}

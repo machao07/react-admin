@@ -1,11 +1,16 @@
 import React from 'react'
-import { Form, Input, Button, DatePicker, Table } from 'antd'
+import { Form, Input, Button, DatePicker, Table, Modal } from 'antd'
 import { getSellerId } from '../../utils/storage'
 import { getList } from '../../api/order'
+import Detail from '../../component/order_manage/promotion_detail'
 
 const { RangePicker } = DatePicker;
 
-export interface State{
+interface Props {
+  currentId: number
+}
+
+interface State{
     listQuery: {
       targetId: string,
       targetType: number,
@@ -21,10 +26,11 @@ export interface State{
     list: object[],
     total: any,
     loading: boolean,
+    detailVisible: boolean,
+    currentId: number
 }
-type PropsType = {}
-class Promotion extends React.Component<PropsType, State>{
-  constructor(props: PropsType) {
+class Promotion extends React.Component<Props, State>{
+  constructor(props: Props) {
     super(props);
     this.state = {
       listQuery: {
@@ -36,6 +42,8 @@ class Promotion extends React.Component<PropsType, State>{
       list: [],
       total: 0,
       loading: false,
+      detailVisible: false,
+      currentId: 0
     }
     // this.getListApi = this.getListApi.bind(this)
   }
@@ -52,6 +60,12 @@ class Promotion extends React.Component<PropsType, State>{
         total: res.data.total
       })
     }).catch(()=>{})
+  }
+  handleDetail(text: any) {
+    this.setState({
+      detailVisible: true,
+      currentId: text.orderId
+    })
   }
   render(){
     const onFinish = (values: object) => {
@@ -87,27 +101,33 @@ class Promotion extends React.Component<PropsType, State>{
         align: 'center',
         fixed: 'right',
         width: 100,
-        render: () => <a>查看</a>,
+        render: (text: any,) => <a onClick={() => {this.handleDetail(text)}}>查看</a>,
       }
     ];
     // 分页切换
     const changePage = (current:number)=>{
-      console.log(current)
+      // console.log(current)
       const query = Object.assign({},this.state.listQuery,{page: current})
       console.log('query',query)
       setTimeout(() => {
         this.setState({
           listQuery: query
         })
-        console.log(this.state.listQuery)
+        // console.log(this.state.listQuery)
         this.getListApi(this.state.listQuery)
       },0)
     }
     const { list, loading } = this.state;
+    // 详情model
+    const handleCancel = () => {
+      this.setState({
+        detailVisible: false
+      })
+    };
     return(
       <div className="container">
           {/* {JSON.stringify(this.state.listQuery)} */}
-          <div className="ikd-page-header"><div className="title">推广活动管理</div></div>
+          <div className="ikd-page-header"><div className="title">股东活动订单</div></div>
           <div className="list-filter">
             <Form
                 className="filter"
@@ -150,9 +170,21 @@ class Promotion extends React.Component<PropsType, State>{
                 showTotal: total => `共 ${total} 条`,
                 onChange: changePage
               }}/>
+          {/* 查看详情 */}
+          <Modal title="查看详情" 
+            width={'80%'} 
+            bodyStyle={{lineHeight: '2.8'}}
+            visible={this.state.detailVisible} 
+            footer={[
+              <Button type="primary" key="back" onClick={handleCancel}>
+                关闭
+              </Button>
+            ]}>
+              <Detail currentId={this.state.currentId}></Detail>
+          </Modal>
       </div>
     )
   }
 }
 
-export default Promotion
+export default Promotion;
