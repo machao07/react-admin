@@ -15,6 +15,11 @@ const menuList =  [
         path: '/promotion',
         name: '股东活动订单',
         index: 'promotion',
+      },
+      {
+        path: '/couponOrder',
+        name: '优惠券订单',
+        index: 'couponOrder',
       }
     ]
   }

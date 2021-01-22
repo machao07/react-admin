@@ -7,7 +7,8 @@ import Slider from './views/slider'
 
 import Home from './views/home'
 import Modify from './views/modify_password'
-import Promotion from './views/orderManage/promotion.tsx'
+import Promotion from './views/orderManage/promotion'
+import CouponOrder from './views/orderManage/coupon'
 
 const { Content, Footer, Sider } = Layout;
 class App extends React.Component {
@@ -33,13 +34,9 @@ class App extends React.Component {
                   <Route exact path="/home" component={ Home } />
                   <Route exact path="/modify" component={ Modify } />
                   <Route path='/promotion' component={ Promotion }/>
+                  <Route path='/couponOrder' component={ CouponOrder }/>
                 </Switch>
               </div>
-              <Switch>
-                <Route exact path="/home" component={ Home } />
-                <Route exact path="/modify" component={ Modify } />
-                <Route path='/promotion' component={ Promotion }/>
-              </Switch>
             </Content>
             <Footer className="tc">React and Ant Design ©2020 Created by Machao </Footer>
           </Layout>

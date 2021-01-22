@@ -20,3 +20,14 @@ export function getDetail(orderId: number) {
         method: 'get'
     });
 }
+
+/* 
+* 优惠券订单列表
+*/
+export function getCouponList(sellerId: number,obj: object) {
+  return axios({
+      url: '/seller/na/coupon/order/search/' + sellerId,
+      method: 'post',
+      data: obj
+  });
+}
