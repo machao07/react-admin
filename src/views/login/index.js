@@ -45,13 +45,13 @@ class Login extends React.Component{
             description: '登录成功',
             type: 'success'
           })
-          this.props.history.push('/home');
+          this.props.history.push('home');
         }else{
           let errmsg = '登录失败'
           if(status == '5'){
             errmsg = '账户或密码错误'
           }
-          message.open({
+          notification.open({
             content: errmsg,
             type: 'error',
           });

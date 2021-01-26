@@ -1,6 +1,6 @@
 import React from 'react'
 import { Menu } from 'antd';
-import { HashRouter, Link } from 'react-router-dom'
+import { HashRouter, Link, withRouter } from 'react-router-dom'
 import menuList from './menu'
 import { createFromIconfontCN } from '@ant-design/icons';
 
@@ -12,10 +12,24 @@ const IconFont = createFromIconfontCN({
   ],
 });
 class Slider extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      openKeys: '',
+      selectedKeys: this.props.location.pathname.replace('/','')
+    }
+  }
+  componentDidMount(){
+  }
   render() {
+    const handleMenu = (e) => {
+      console.log(e)
+      this.setState.selectedKeys = e.key
+    }
     return (
+      // openKeys={[this.state.openKeys]}
       <HashRouter>
-        <Menu theme="dark" defaultOpenKeys={['home']} defaultSelectedKeys={['home']} mode="inline">
+        <Menu theme="dark" openKeys={[this.state.openKeys]} selectedKeys={[this.state.selectedKeys]} onClick={handleMenu} mode="inline">
           {
             menuList.map((item)=>{
               if(item.subs){
@@ -47,4 +61,4 @@ class Slider extends React.Component {
   }
 }
 
-export default Slider
+export default withRouter(Slider);
