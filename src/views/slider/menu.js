@@ -1,28 +1,24 @@
 const menuList =  [
   {
-    path: '/home',
-    name: '首页',
-    index: 'home',
+    title: '首页',
+    key: 'home',
     icon: 'icon-home'
   },
   {
-    path: '/order_mag',
-    name: '订单管理',
-    index: 'order_mag',
+    title: '订单管理',
+    key: 'order_mag',
     icon: 'icon-gouwucheman',
     subs: [
       {
-        path: '/promotion',
-        name: '股东活动订单',
-        index: 'promotion',
+        title: '股东活动订单',
+        key: 'promotion',
       },
       {
-        path: '/couponOrder',
-        name: '优惠券订单',
-        index: 'couponOrder',
+        title: '优惠券订单',
+        key: 'couponOrder',
       }
     ]
   }
 ]
 
-export default menuList
+export default menuList;
