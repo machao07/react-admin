@@ -61,7 +61,9 @@ class Promotion extends React.Component<Props, State>{
       })
     }).catch(()=>{})
   }
-  handleDetail(text: any) {
+  handleDetail(text: any, record: any) {
+    // console.log(text)
+    // console.log(record)
     this.setState({
       detailVisible: true,
       currentId: text.orderId
@@ -87,21 +89,27 @@ class Promotion extends React.Component<Props, State>{
       })
     }
     const columns:any = [
-      { title: '订单编号', dataIndex: 'orderId', key: 'orderId', width: 180 },
-      { title: '活动名称', dataIndex: 'activityName',key: 'activityName', width: 150 },
-      { title: '购买用户昵称', dataIndex: 'memberName', key: 'memberName', width: 120 },
-      { title: '绑定手机号', dataIndex: 'mobile',key: 'mobile', width: 150 },
-      { title: '分享人', dataIndex: 'sharer', key: 'sharer', width: 180 },
-      { title: '下单时间', dataIndex: 'timeAt', key: 'timeAt', width: 150 },
-      { title: '订单金额', dataIndex: 'payMoney', key: 'payMoney', width: 100 },
-      { title: '手续费', dataIndex: 'payOther', key: 'payOther', width: 100 },
+      { title: '订单编号', dataIndex: 'orderId', key: 'orderId', align: 'center', width: 180 },
+      { title: '活动名称', dataIndex: 'activityName',key: 'activityName', align: 'center', width: 150 },
+      { title: '购买用户昵称', dataIndex: 'memberName', key: 'memberName', align: 'center', width: 120 },
+      { title: '绑定手机号', dataIndex: 'mobile',key: 'mobile', align: 'center', width: 150,  
+        render: (text: any, record: any) => {return record.mobile?record.mobile:'-----'}
+      },
+      { title: '分享人', dataIndex: 'sharer', key: 'sharer', align: 'center', width: 180, 
+        render: (text: any, record: any) => {return record.sharer?record.sharer:'-----'}
+      },
+      { title: '下单时间', dataIndex: 'timeAt', key: 'timeAt', align: 'center', width: 200,
+        render: (text: any, record: any) => { return record.timeAt?new Date(record.timeAt*1000).toLocaleString():'-----'}
+      },
+      { title: '订单金额', dataIndex: 'payMoney', key: 'payMoney', align: 'center', width: 100 },
+      { title: '手续费', dataIndex: 'payOther', key: 'payOther', align: 'center', width: 100 },
       {
         title: '操作',
         key: 'operation',
         align: 'center',
         fixed: 'right',
         width: 100,
-        render: (text: any,) => <a onClick={() => {this.handleDetail(text)}}>查看</a>,
+        render: (text: any, record: any) => <a onClick={() => {this.handleDetail(text, record)}}>查看</a>,
       }
     ];
     // 分页切换
@@ -174,7 +182,9 @@ class Promotion extends React.Component<Props, State>{
           <Modal title="查看详情" 
             width={'80%'} 
             bodyStyle={{lineHeight: '2.8'}}
-            visible={this.state.detailVisible} 
+            visible={this.state.detailVisible}
+            maskClosable={false}
+            onCancel={handleCancel}
             footer={[
               <Button type="primary" key="back" onClick={handleCancel}>
                 关闭

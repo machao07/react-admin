@@ -96,21 +96,25 @@ class Coupon extends Component<Props, State>{
       })
     }
     const columns:any = [
-      { title: '券ID', dataIndex: 'couponId', key: 'orderId', width: 180 },
-      { title: '券类型', dataIndex: 'couponName',key: 'activityName', width: 150 },
-      { title: '券名称', dataIndex: 'couponName',key: 'couponName', width: 150 },
-      { title: '购买金额', dataIndex: 'payMoney', key: 'payMoney', width: 120 },
-      { title: '结算金额', dataIndex: 'settlePrice',key: 'settlePrice', width: 150 },
-      { title: '总数量', dataIndex: 'mutiCount', key: 'mutiCount', width: 180 },
-      { title: '已核销数量', dataIndex: 'mutiUsedCount', key: 'mutiUsedCount', width: 150 },
-      { title: '已结算金额', dataIndex: 'closerAmount', key: 'closerAmount', width: 100 },
-      { title: '补贴', dataIndex: 'firstPay', key: 'firstPay', width: 100 },
-      { title: '购买人/使用人', dataIndex: 'memberName', key: 'payOther', width: 100 },
-      { title: '购买时间', dataIndex: 'payTime', key: 'payTime', width: 100 },
-      { title: '核销门店', dataIndex: 'closeStoreName', key: 'closeStoreName', width: 100 },
-      { title: '核销时间', dataIndex: 'closeTime', key: 'closeTime', width: 100 },
-      { title: '分享者', dataIndex: 'sharerName', key: 'sharerName', width: 100 },
-      { title: '核销状态', dataIndex: 'payOther', key: 'payOther', width: 100 },
+      { title: '券ID', dataIndex: 'couponId', key: 'orderId', align: 'center', width: 180 },
+      { title: '券类型', dataIndex: 'couponName',key: 'activityName', align: 'center', width: 150 },
+      { title: '券名称', dataIndex: 'couponName',key: 'couponName', align: 'center', width: 150 },
+      { title: '购买金额', dataIndex: 'payMoney', key: 'payMoney', align: 'center', width: 120 },
+      { title: '结算金额', dataIndex: 'settlePrice',key: 'settlePrice', align: 'center', width: 150 },
+      { title: '总数量', dataIndex: 'mutiCount', key: 'mutiCount', align: 'center', width: 180 },
+      { title: '已核销数量', dataIndex: 'mutiUsedCount', key: 'mutiUsedCount', align: 'center', width: 150 },
+      { title: '已结算金额', dataIndex: 'closerAmount', key: 'closerAmount', align: 'center', width: 100 },
+      { title: '补贴', dataIndex: 'firstPay', key: 'firstPay', align: 'center', width: 100 },
+      { title: '购买人/使用人', dataIndex: 'memberName', key: 'payOther', align: 'center', width: 100 },
+      { title: '购买时间', dataIndex: 'payTime', key: 'payTime', align: 'center', width: 200, 
+        render: (text: any, record: any) => {return record.payTime?new Date(record.payTime*1000).toLocaleString():'-----'}
+      },
+      { title: '核销门店', dataIndex: 'closeStoreName', key: 'closeStoreName', align: 'center', width: 100 },
+      { title: '核销时间', dataIndex: 'closeTime', key: 'closeTime', align: 'center', width: 200,
+        render: (text: any, record: any) => {return record.closeTime?new Date(record.closeTime*1000).toLocaleString():'-----'}
+      },
+      { title: '分享者', dataIndex: 'sharerName', key: 'sharerName', align: 'center', width: 100 },
+      { title: '核销状态', dataIndex: 'payOther', key: 'payOther', align: 'center', width: 100 },
       {
         title: '操作',
         key: 'operation',
@@ -200,7 +204,9 @@ class Coupon extends Component<Props, State>{
           <Modal title="查看详情" 
             width={'80%'} 
             bodyStyle={{lineHeight: '2.8'}}
-            visible={this.state.detailVisible} 
+            visible={this.state.detailVisible}
+            maskClosable={false}
+            onCancel={handleCancel} 
             footer={[
               <Button type="primary" key="back" onClick={handleCancel}>
                 关闭

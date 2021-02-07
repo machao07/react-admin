@@ -56,11 +56,11 @@ class Slider extends React.Component {
 
   handleMenu = (e) => {
     this.setState({selectedKeys:[e.key]})
-    console.log(e)
+    // console.log(e)
   }
 
   onOpenChange = (openKeys) => {
-    console.log(openKeys)
+    // console.log(openKeys)
     if (openKeys.length === 0 || openKeys.length === 1) {
       this.setState({
         openKeys
