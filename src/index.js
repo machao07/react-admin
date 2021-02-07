@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.less';
 import './style/common.css';
 import './style/reset.css';
 import MRoute from './router/index'
