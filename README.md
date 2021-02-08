@@ -37,5 +37,4 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ## 效果图
-
-![首页](https://github.com//machao07/image-store/blob/master/react-admin/home.png)
+![首页](https://github.com//machao07/image-store/blob/master/react-admin/home.png?raw=true)
