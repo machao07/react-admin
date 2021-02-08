@@ -20,11 +20,11 @@ class App extends React.Component {
     const { collapsed } = this.state;
     return (
         <Layout style={{ minHeight: '100vh' }}>
-          <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
+          <Sider theme={'linght'} style={{background: '#fff'}} trigger={null} collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
             <Slider collapsed={collapsed} />
           </Sider>
           <Layout className="site-layout">
-            <Header />
+            <Header collapsed={collapsed}/>
             <Content className={collapsed == true ? 'noLeft' : 'left'} style={{ position: 'absolute',top: 70,right: 0,bottom: 0 }}>
               <ContentMain/>
             </Content>

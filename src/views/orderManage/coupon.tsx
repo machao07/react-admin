@@ -191,7 +191,7 @@ class Coupon extends Component<Props, State>{
             </Form>
           </div>
           <Table dataSource={list} columns={columns} rowKey="id"
-              loading={loading} scroll={{y: '500px'}} 
+              loading={loading} scroll={{y: '400px'}} 
               pagination={{
                 total: this.state.total,
                 current: this.state.listQuery.page,

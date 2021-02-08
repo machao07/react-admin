@@ -87,13 +87,16 @@ class Slider extends React.Component {
     return (
       <div>
         {/* <p style={{color: '#fff'}}>{openKeys} - {selectedKeys}</p> */}
+        <div className="logo">
+          <img src={require('../../assets/logo_left.png')} alt=""/>
+        </div>
         <Menu
           {...defaultProps}
           onClick={this.handleMenu}
           onOpenChange={this.onOpenChange}
           // openKeys={openKeys}
           selectedKeys={selectedKeys}
-          theme={this.props.theme ? this.props.theme : 'dark'}
+          theme={this.props.theme ? this.props.theme : 'light'}
           mode='inline'>
           {
             menuList && menuList.map(item => {

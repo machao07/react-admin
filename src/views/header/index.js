@@ -2,13 +2,23 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import './style.css'
 import { Menu, Dropdown } from 'antd';
-import { UserOutlined, CaretDownOutlined } from '@ant-design/icons';
-import { removeToken } from '../../api/token'
-import { getLoginName } from '../../utils/storage'
+import { UserOutlined, CaretDownOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
+import { removeToken } from '../../api/token';
+import { getLoginName } from '../../utils/storage';
 class Header extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.state = {
+      collapsed: false
+    }
   }
+
+  toggle = () => {
+    this.setState({
+      collapsed: !this.props.collapsed,
+    });
+  }
+
   render(){
     const handleMenuClick = ({key}) => {
       if(key === 'layout'){
@@ -28,10 +38,16 @@ class Header extends React.Component {
         <Menu.Item key="layout">退出登录</Menu.Item>
       </Menu>
     )
+
     return (
       <div className="header">
-        <div className="logo">
-          <img src={require('../../assets/logo_left.png')} alt=""/>
+        <div className="collapse">
+          {
+            React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                className: 'trigger',
+                onClick: this.toggle,
+            })
+          }
         </div>
 
         <div>

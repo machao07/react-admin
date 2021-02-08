@@ -169,7 +169,7 @@ class Promotion extends React.Component<Props, State>{
             </Form>
           </div>
           <Table dataSource={list} columns={columns} rowKey="orderId"
-              loading={loading} scroll={{y: '500px'}} 
+              loading={loading} scroll={{y: '400px'}} 
               pagination={{
                 total: this.state.total,
                 current: this.state.listQuery.page,
