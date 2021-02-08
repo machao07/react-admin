@@ -18,6 +18,17 @@ const menuList =  [
         key: 'couponOrder',
       }
     ]
+  },
+  {
+    title: '配置管理',
+    key: 'configuration_mag',
+    icon: 'icon-peizhi',
+    subs: [
+      {
+        title: '金币配置',
+        key: 'gold',
+      }
+    ]
   }
 ]
 

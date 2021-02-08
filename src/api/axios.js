@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { notification } from 'antd'
+import { message } from 'antd'
 import { HashRouter } from 'react-router-dom'
 import { getToken, removeToken } from './token'
 const router = new HashRouter()
@@ -32,9 +32,9 @@ instance.interceptors.response.use(
       }
 
       if (res.code != "0") {
-          notification.open({
+          message.open({ // notification
               message: '失败',
-              description: res.message,
+              content: res.message,
               type: 'error'
           });
           return Promise.reject(res);

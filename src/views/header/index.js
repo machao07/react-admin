@@ -18,7 +18,6 @@ class Header extends React.Component {
       collapsed: !this.props.collapsed,
     });
   }
-
   render(){
     const handleMenuClick = ({key}) => {
       if(key === 'layout'){
