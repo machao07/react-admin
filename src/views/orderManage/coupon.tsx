@@ -100,18 +100,20 @@ class Coupon extends Component<Props, State>{
       { title: '券类型', dataIndex: 'couponName',key: 'activityName', align: 'center', width: 150 },
       { title: '券名称', dataIndex: 'couponName',key: 'couponName', align: 'center', width: 150 },
       { title: '购买金额', dataIndex: 'payMoney', key: 'payMoney', align: 'center', width: 120 },
-      { title: '结算金额', dataIndex: 'settlePrice',key: 'settlePrice', align: 'center', width: 150 },
-      { title: '总数量', dataIndex: 'mutiCount', key: 'mutiCount', align: 'center', width: 180 },
-      { title: '已核销数量', dataIndex: 'mutiUsedCount', key: 'mutiUsedCount', align: 'center', width: 150 },
-      { title: '已结算金额', dataIndex: 'closerAmount', key: 'closerAmount', align: 'center', width: 100 },
+      { title: '结算金额', dataIndex: 'settlePrice',key: 'settlePrice', align: 'center', width: 120 },
+      { title: '总数量', dataIndex: 'mutiCount', key: 'mutiCount', align: 'center', width: 120 },
+      { title: '已核销数量', dataIndex: 'mutiUsedCount', key: 'mutiUsedCount', align: 'center', width: 120 },
+      { title: '已结算金额', dataIndex: 'closerAmount', key: 'closerAmount', align: 'center', width: 120 },
       { title: '补贴', dataIndex: 'firstPay', key: 'firstPay', align: 'center', width: 100 },
       { title: '购买人/使用人', dataIndex: 'memberName', key: 'payOther', align: 'center', width: 100 },
       { title: '购买时间', dataIndex: 'payTime', key: 'payTime', align: 'center', width: 200, 
-        render: (text: any, record: any) => {return record.payTime?new Date(record.payTime*1000).toLocaleString():'-----'}
+        render: (text: any, record: any) => {return record.payTime?new Date(record.payTime*1000).toLocaleString():'-----'},
+        sorter: (a: any, b: any) => a.payTime - b.payTime
       },
       { title: '核销门店', dataIndex: 'closeStoreName', key: 'closeStoreName', align: 'center', width: 100 },
       { title: '核销时间', dataIndex: 'closeTime', key: 'closeTime', align: 'center', width: 200,
-        render: (text: any, record: any) => {return record.closeTime?new Date(record.closeTime*1000).toLocaleString():'-----'}
+        render: (text: any, record: any) => {return record.closeTime?new Date(record.closeTime*1000).toLocaleString():'-----'},
+        sorter: (a: any, b: any) => a.closeTime - b.closeTime
       },
       { title: '分享者', dataIndex: 'sharerName', key: 'sharerName', align: 'center', width: 100 },
       { title: '核销状态', dataIndex: 'payOther', key: 'payOther', align: 'center', width: 100 },

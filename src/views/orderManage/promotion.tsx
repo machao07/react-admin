@@ -99,7 +99,8 @@ class Promotion extends React.Component<Props, State>{
         render: (text: any, record: any) => {return record.sharer?record.sharer:'-----'}
       },
       { title: '下单时间', dataIndex: 'timeAt', key: 'timeAt', align: 'center', width: 200,
-        render: (text: any, record: any) => { return record.timeAt?new Date(record.timeAt*1000).toLocaleString():'-----'}
+        render: (text: any, record: any) => { return record.timeAt?new Date(record.timeAt*1000).toLocaleString():'-----'},
+        sorter: (a: any, b: any) => a.timeAt - b.timeAt
       },
       { title: '订单金额', dataIndex: 'payMoney', key: 'payMoney', align: 'center', width: 100 },
       { title: '手续费', dataIndex: 'payOther', key: 'payOther', align: 'center', width: 100 },
