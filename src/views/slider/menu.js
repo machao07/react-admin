@@ -29,6 +29,17 @@ const menuList =  [
         key: 'gold',
       }
     ]
+  },
+  {
+    title: '积分会员管理',
+    key: 'integralmember_manage',
+    icon: 'icon-jifen',
+    subs: [
+      {
+        title: '积分规则',
+        key: 'integralRule',
+      }
+    ]
   }
 ]
 

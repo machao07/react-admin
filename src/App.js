@@ -4,8 +4,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 import Header from './views/header'
 import Slider from './views/slider'
-import ContentMain from './component/contentMain'
-
+import ContentMain from './components/contentMain'
 
 const { Content, Footer, Sider } = Layout;
 class App extends React.Component {
@@ -28,11 +27,11 @@ class App extends React.Component {
             <Content className={collapsed == true ? 'noLeft' : 'left'} style={{ position: 'absolute',top: 70,right: 0,bottom: 0 }}>
               <ContentMain/>
             </Content>
-            <Footer className="tc" style={{ position: 'realitive',bottom: 10 }}>React and Ant Design ©2020 Created by Machao </Footer>
+            {/* <Footer className="tc" style={{ position: 'absolute',width: '100%',bottom: 0}}>React and Ant Design ©2021 Created by Machao </Footer> */}
           </Layout>
         </Layout>
     )
   }
 }
 
-export default App
+export default App;

@@ -7,7 +7,7 @@ import { createFromIconfontCN } from '@ant-design/icons';
 const { SubMenu } = Menu;
 const IconFont = createFromIconfontCN({
   scriptUrl: [
-    '//at.alicdn.com/t/font_2370456_344tz5gon5r.js', 
+    '//at.alicdn.com/t/font_2370456_a35h0a4cnzc.js', 
   ],
 });
 class Slider extends React.Component {

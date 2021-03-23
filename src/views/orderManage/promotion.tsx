@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Input, Button, DatePicker, Table, Modal } from 'antd'
 import { getSellerId } from '../../utils/storage'
 import { getList } from '../../api/order'
-import Detail from '../../component/order_manage/promotion_detail'
+import Detail from '../../components/order_manage/promotion_detail'
 
 const { RangePicker } = DatePicker;
 
