@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { withRouter, Switch, Route, Redirect } from 'react-router-dom';
 
-import Home from '../../views/home';
-import Modify from '../../views/modify_password';
+import Home from 'views/home';
+import Modify from 'views/modify_password';
 
 /* 订单管理 */
-import Promotion from '../../views/orderManage/promotion';
-import CouponOrder from '../../views/orderManage/coupon';
+import Promotion from 'views/orderManage/promotion';
+import CouponOrder from 'views/orderManage/coupon';
 
 /* 配置管理 */
-import Gold from '../../views/configuration_manage/gold';
+import Gold from 'views/configuration_manage/gold';
 
 /* 积分与会员配置 */
-import IntegralRule from '../../views/integralmember_manage';
+import IntegralRule from 'views/integralmember_manage';
 
 class ContentMain extends Component {
     render() {

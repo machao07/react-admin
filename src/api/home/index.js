@@ -1,4 +1,4 @@
-import axios from '../../api/axios'
+import axios from '../axios'
 
 // 获取商户信息
 export function getSellerInfo(sellerId) {

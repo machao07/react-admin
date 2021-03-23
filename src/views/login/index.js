@@ -1,9 +1,9 @@
 import React from 'react'
 import { Form, Input, Button, Checkbox, notification, message } from 'antd';
 import { UserOutlined, LockFilled } from '@ant-design/icons';
-import { loginName } from '../../api/login'
-import { setToken } from '../../api/token'
-import './style.css'
+import { loginName } from 'api/login';
+import { setToken } from 'api/token';
+import './style.css';
 
 class Login extends React.Component{
   render(){

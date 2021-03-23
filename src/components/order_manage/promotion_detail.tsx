@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Row, Col } from 'antd';
-import { getDetail } from '../../api/order/index'
+import { getDetail } from 'api/order/index'
 
 interface Props {
     currentId: number

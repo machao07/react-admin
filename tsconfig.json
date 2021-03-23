@@ -27,7 +27,7 @@
     "noUnusedParameters": false,
     "jsx": "react",
     "outDir": "dist",
-    "baseUrl": "./",
+    "baseUrl": "src",
     "allowSyntheticDefaultImports": true,
     "strict": true
   },

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form, Input, Button, Checkbox, notification, message } from 'antd';
-import { modifyPassword } from '../../api/home'
+import { modifyPassword } from 'api/home'
  
 class ModifyPassword extends React.Component{
     state = {

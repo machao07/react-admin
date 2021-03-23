@@ -3,8 +3,8 @@ import { withRouter } from 'react-router-dom'
 import './style.css'
 import { Menu, Dropdown } from 'antd';
 import { UserOutlined, CaretDownOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import { removeToken } from '../../api/token';
-import { getLoginName } from '../../utils/storage';
+import { removeToken } from 'api/token';
+import { getLoginName } from 'utils/storage';
 class Header extends React.Component {
   constructor(props) {
     super(props);

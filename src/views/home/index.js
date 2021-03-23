@@ -1,11 +1,18 @@
-import React from 'react'
-import './style.css'
+import React from 'react';
+import './style.css';
 import { Card, Row, Col, Button } from 'antd';
 import { PhoneOutlined, ScheduleOutlined } from '@ant-design/icons';
 import { createFromIconfontCN } from '@ant-design/icons';
-import { getSellerName, getSellerId } from '../../utils/storage';
-import DateFilter from '../../utils/dateFilter';
-import { getSellerInfo, getAmount, getTodayRevenue, getMemberData, getTodayPay, dashBoard } from '../../api/home'
+import { getSellerName, getSellerId } from 'utils/storage';
+import DateFilter from 'utils/dateFilter';
+import { 
+  getSellerInfo, 
+  getAmount, 
+  getTodayRevenue, 
+  getMemberData, 
+  getTodayPay, 
+  dashBoard 
+} from 'api/home';
 import ReactEcharts from 'echarts-for-react'
 // import echarts from 'echarts/lib/echarts';
 import 'echarts/lib/chart/line';
