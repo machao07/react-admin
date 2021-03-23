@@ -22,7 +22,7 @@ class App extends React.Component {
           </Sider>
           <Layout className="site-layout">
             <Header collapsed={collapsed}/>
-            <Content className={collapsed == true ? 'noLeft' : 'left'} style={{ position: 'absolute',top: 70,right: 0,bottom: 0 }}>
+            <Content className={collapsed === true ? 'noLeft' : 'left'} style={{ position: 'absolute',top: 70,right: 0,bottom: 0 }}>
               <ContentMain/>
             </Content>
             <Footer className="tc" style={{ position: 'realitive',width: '100%',bottom: 0}}>React and Ant Design ©2021 Created by Machao </Footer>

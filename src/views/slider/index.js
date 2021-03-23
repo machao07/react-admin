@@ -1,6 +1,6 @@
 import React from 'react'
 import { Menu } from 'antd';
-import { HashRouter, Link, withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import menuList from './menu'
 import { createFromIconfontCN } from '@ant-design/icons';
 

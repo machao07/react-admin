@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Input, Button, Checkbox, notification, message } from 'antd';
+import { Form, Input, Button, notification } from 'antd';
 import { modifyPassword } from 'api/home'
  
 class ModifyPassword extends React.Component{
@@ -23,7 +23,7 @@ class ModifyPassword extends React.Component{
                     console.log(value)
                     console.log(this.state.newPassWord)
                     if(value ===''){
-                        throw new Error('清再次输入密码')
+                        throw new Error('请再次输入密码')
                     }else if(value !== this.state.newPassWord){
                         throw new Error('两次输入的密码不一致')
                     }else{
@@ -68,7 +68,7 @@ class ModifyPassword extends React.Component{
                     <Form.Item
                         label="确认新密码："
                         name="re_newPassWord"
-                        rules={[{ required: true, message: '密码不能为空' }]}>
+                        rules={reRule}>
                         <Input.Password className="w300" placeholder="请输入确认新密码"  />
                     </Form.Item>
 
@@ -81,4 +81,4 @@ class ModifyPassword extends React.Component{
     }
 }
 
-export default ModifyPassword
+export default ModifyPassword;

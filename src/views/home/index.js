@@ -22,8 +22,8 @@ const IconFont = createFromIconfontCN({
     '//at.alicdn.com/t/font_2196242_llztnu5z71.js', // icon-wo icon-qian icon-zengjiarenyuan
   ],
 });
-const style = { background: '#0092ff', padding: '8px 0' };
-const headBackground = 'http://obs.dynamic.huilianshenghua.com/2020/04-13/i70riuwn5v3okibmf6a4vqjm25perz7v.jpg'
+// const style = { background: '#0092ff', padding: '8px 0' };
+// const headBackground = 'http://obs.dynamic.huilianshenghua.com/2020/04-13/i70riuwn5v3okibmf6a4vqjm25perz7v.jpg'
 
 class Home extends React.Component{
   // 声明

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Input, Button, Checkbox, notification, message } from 'antd';
+import { Form, Input, Button, notification } from 'antd';
 import { UserOutlined, LockFilled } from '@ant-design/icons';
 import { loginName } from 'api/login';
 import { setToken } from 'api/token';
@@ -48,7 +48,7 @@ class Login extends React.Component{
           this.props.history.push('home');
         }else{
           let errmsg = '登录失败'
-          if(status == '5'){
+          if(status === '5'){
             errmsg = '账户或密码错误'
           }
           notification.open({
@@ -68,7 +68,7 @@ class Login extends React.Component{
     return(
       <div className="wrap">
         <div className="header">
-          <img src={require("../../assets/logo.png")} className="logo"/>
+          <img src={require("../../assets/logo.png")} className="logo" alt=""/>
           <span className="companyName">商户中心</span>
         </div>
 

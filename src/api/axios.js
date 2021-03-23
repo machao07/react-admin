@@ -5,7 +5,7 @@ import { getToken, removeToken } from './token'
 const router = new HashRouter()
 
 const instance = axios.create({
-  baseURL: process.env.NODE_ENV == 'development'? 'https://qa.huilianshenghua.com/api':'/api',
+  baseURL: process.env.NODE_ENV === 'development'? 'https://qa.huilianshenghua.com/api':'/api',
   timeout: 3000
 })
 
@@ -31,7 +31,7 @@ instance.interceptors.response.use(
           router.history.push('/login');
       }
 
-      if (res.code != "0") {
+      if (res.code !== "0") {
           message.open({ // notification
               message: '失败',
               content: res.message,
