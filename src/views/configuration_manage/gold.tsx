@@ -4,14 +4,22 @@ import { getSellerId } from 'utils/storage';
 import { getCoin, addCoin } from 'api/configuration/gold';
 
 
-class Gold extends Component {
+class Gold extends Component<any, any> {
+    constructor(props: any){
+        super(props)
+    }
     componentDidMount(){
         this.getCoin()
     }
     //金币配置回显 
     getCoin(){
         getCoin(getSellerId()).then( res =>{
-            
+            const [form] = Form.useForm();
+            const { coinCredit,  coinMoney} = res.data;
+            form.setFieldsValue({
+                coinCredit,
+                coinMoney
+            })
         })
     }
     render(){

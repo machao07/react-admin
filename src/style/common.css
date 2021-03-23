@@ -107,6 +107,17 @@ body {
   box-sizing: border-box;
 }
 
+.ikd-page-header {
+  color: #323232;
+  margin-bottom: 20px;
+}
+
+.ikd-page-header .title {
+  height: 40px;
+  font-size: 18px;
+  line-height: 40px;
+}
+
 .list-filter {
   position: relative;
   margin: 20px 0;
