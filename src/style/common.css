@@ -149,3 +149,10 @@ body {
   margin-top: -20px;
   left: 14px;
 }
+
+.avatar {
+  width: 80px;
+  padding: 4px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}

@@ -40,6 +40,17 @@ const menuList =  [
         key: 'integralRule',
       }
     ]
+  },
+  {
+    title: '小店管理',
+    key: 'shop_manage',
+    icon: 'icon-shop',
+    subs: [
+      {
+        title: '店铺管理',
+        key: 'store',
+      }
+    ]
   }
 ]
 

@@ -14,6 +14,9 @@ import Gold from 'views/configuration_manage/gold';
 /* 积分与会员配置 */
 import IntegralRule from 'views/integralmember_manage';
 
+/* 小店管理 */
+import Store from 'views/store_manage';
+
 class ContentMain extends Component {
     render() {
         return (
@@ -25,6 +28,7 @@ class ContentMain extends Component {
                     <Route exact path='/couponOrder' component={ CouponOrder }/>
                     <Route exact path='/gold' component={ Gold }/>
                     <Route exact path='/integralRule' component={ IntegralRule }/>
+                    <Route exact path='/store' component={ Store }/>
                     <Redirect exact from='/' to='/home'/>
                 </Switch>
             </div>
