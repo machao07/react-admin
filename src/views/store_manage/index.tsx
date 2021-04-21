@@ -46,14 +46,14 @@ class Store extends Component<any, States> {
     }
     render(){
         const onFinish = (values: object) => {
-            console.log('value=======', values)
             // const { name, nickName, status } = JSON.parse(JSON.stringify(values))
             const _listQuery = Object.assign({}, this.state.listQuery, {...values})
             this.setState({
               listQuery: _listQuery
             })
-            
             // console.log(this.state.listQuery)
+            const { num, page, listQuery } = this.state;
+            this.getListApi(num, page, listQuery)
         }
         const columns:any = [
             { title: '小店编号', dataIndex: 'id', key: 'id', align: 'center', width: 180 },
@@ -128,7 +128,7 @@ class Store extends Component<any, States> {
                             label="店铺状态："
                             name="status">
                             <Select placeholder="全部状态" style={{ width: 120 }} allowClear>
-                                <Option value="0">禁用</Option>
+                                <Option value="3">禁用</Option>
                                 <Option value="1">启用</Option>
                             </Select>
                         </Form.Item>
