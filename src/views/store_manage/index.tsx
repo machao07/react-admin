@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Table, Modal, Select, Tag} from 'antd';
-import { getList } from 'api/store';
+import { Form, Input, Button, Table, Modal, Select, Tag, Popconfirm, message} from 'antd';
+import { getList, enable } from 'api/store';
+import Tip from './component/tip';
+
 const { Option } = Select
 
 interface States{
@@ -14,6 +16,11 @@ interface States{
     list: any[]
     total: number
     loading: boolean
+    currentRow: object
+    title: string
+    visible: boolean
+    modalText: string
+    modalWidth: number | string
 }
 
 class Store extends Component<any, States> {
@@ -28,14 +35,22 @@ class Store extends Component<any, States> {
         list: [],
         total: 0,
         loading: false,
+        currentRow: {
+            id: 0,
+            status: 0
+        },
+        title: '',
+        visible: false,
+        modalText: '',
+        modalWidth: 0
     }
     componentDidMount(){
-        const {num, page, listQuery} = this.state
-        this.getListApi(num, page, listQuery)
+        this.getListApi()
     }
     // 列表接口
-    getListApi(num:number, page: number, listQuery:object) {
+    getListApi() {
         this.setState({loading: true});
+        const {num, page, listQuery} = this.state
         getList(num, page, listQuery).then( res =>{
             this.setState({
                 loading: false,
@@ -46,23 +61,37 @@ class Store extends Component<any, States> {
     }
     render(){
         const onFinish = (values: object) => {
-            // const { name, nickName, status } = JSON.parse(JSON.stringify(values))
             const _listQuery = Object.assign({}, this.state.listQuery, {...values})
             this.setState({
               listQuery: _listQuery
             })
-            // console.log(this.state.listQuery)
-            const { num, page, listQuery } = this.state;
-            this.getListApi(num, page, listQuery)
+            this.getListApi()
+        }
+
+        const confirm = () => {
+            const { title, currentRow } = this.state;
+            let status = 1, txt = '启用成功';
+            if(currentRow?.status === 1) {
+                status = 3
+                txt = '禁用成功'
+            }
+            if(title === '提示'){
+                enable(status , currentRow?.id).then( res => {
+                    message.success(txt);
+                    this.getListApi()
+                    this.setState({visible: false})
+                })
+            }
+        }
+        const cancel = () => {
+            this.setState({visible: false})
         }
         const columns:any = [
             { title: '小店编号', dataIndex: 'id', key: 'id', align: 'center', width: 180 },
             { title: '店铺名称', dataIndex: 'name',key: 'name', align: 'center', width: 150 },
             { title: '店铺头像', dataIndex: 'logo', key: 'logo', align: 'center', width: 120,
                 render: (text: any, record: any) => {
-                    return (
-                        <img className="avatar" src={record.logo} ></img>
-                    )
+                    return <img className="avatar" src={record.logo} ></img>
                 }
             },
             { title: '店主', dataIndex: 'nickName',key: 'nickName', align: 'center', width: 150,  
@@ -77,9 +106,7 @@ class Store extends Component<any, States> {
             },
             { title: '状态', dataIndex: 'status', key: 'status', align: 'center', width: 100,
                 render: (text: any, record: any) => {
-                    return (
-                        <Tag color={record.status===1? 'success': 'error'}>{record.status === 1 ? '启用': '禁用'}</Tag>
-                    )
+                    return <Tag color={record.status===1? 'success': 'error'}>{record.status === 1 ? '启用': '禁用'}</Tag>
                 }
             },
             { title: '联系人', dataIndex: 'contactPerson', key: 'contactPerson', align: 'center', width: 100 },
@@ -89,21 +116,45 @@ class Store extends Component<any, States> {
                 key: 'operation',
                 align: 'center',
                 fixed: 'right',
-                width: 140,
-                render: (text: any, record: any) => <a onClick={() => {}}>查看</a>,
+                width: 200,
+                render: (text: any, record: any) => [
+                    <a className="mr10" onClick={() => {
+                        let _modalText = '确定禁用?'
+                        if(record.status === 3) _modalText = '确定启用?'
+                        this.setState({title: '提示', modalText: _modalText, modalWidth: 400, visible: true, currentRow: record})
+                    }}>{record.status===1 ? '禁用': '启用'}</a>,
+                    <a className="mr10" onClick={() => {
+                        this.setState({title: '结算规则', visible: true, modalWidth: 800})
+                    }}>结算规则</a>,
+                    <a onClick={() => {
+                        this.setState({title: '店铺商品', visible: true, modalWidth: '85%'})
+                    }}>店铺商品</a>
+                ]
             }
         ];
+
+        const switchModal = () => {
+            const { title } = this.state;
+            switch (title) {
+                case '结算规则':
+                    return ''
+                    break;
+                case '店铺商品':
+                    return ''
+                    break;
+                default:
+                    return <Tip text={this.state.modalText}></Tip>
+                    break;
+            }
+        }
         // 分页切换
         const changePage = (current:number)=>{
             setTimeout(() => {
-                this.setState({
-                    page: current
-                })
-                const { num, page, listQuery } = this.state;
-                this.getListApi(num, page, listQuery)
+                this.setState({ page: current })
+                this.getListApi()
             },0)
         }
-        const { list, loading } = this.state;
+        const { list, loading, title, visible, modalWidth } = this.state;
         return (
             <div className="container">
                 <div className="ikd-page-header"><div className="title">店铺管理</div></div>
@@ -147,6 +198,9 @@ class Store extends Component<any, States> {
                         showTotal: total => `共 ${total} 条`,
                         onChange: changePage
                     }}/>
+                <Modal width={modalWidth} title={title} visible={visible} onOk={confirm} onCancel={cancel}>
+                    {switchModal()}
+                </Modal>
             </div>
         )
     }
