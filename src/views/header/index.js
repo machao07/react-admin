@@ -12,10 +12,14 @@ class Header extends React.Component {
       collapsed: false
     }
   }
-
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log('nextProps====', nextProps)
+  //   console.log('nextState====', nextState)
+  //   return nextState.collapsed !== this.state.collapsed
+  // }
   toggle = () => {
     this.setState({
-      collapsed: !this.props.collapsed,
+      collapsed: !this.state.collapsed,
     });
   }
   render(){

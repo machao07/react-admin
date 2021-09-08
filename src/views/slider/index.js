@@ -13,6 +13,7 @@ const IconFont = createFromIconfontCN({
 class Slider extends React.Component {
   constructor(props){
     super(props);
+    console.log('props=====', props)
     this.state = {
       openKeys: [],
       selectedKeys: []
@@ -56,11 +57,11 @@ class Slider extends React.Component {
 
   handleMenu = (e) => {
     this.setState({selectedKeys:[e.key]})
-    // console.log(e)
+    // console.log('menu======', e)
   }
 
   onOpenChange = (openKeys) => {
-    // console.log(openKeys)
+    // console.log('change=====', openKeys)
     if (openKeys.length === 0 || openKeys.length === 1) {
       this.setState({
         openKeys
@@ -71,9 +72,7 @@ class Slider extends React.Component {
     //最新展开的菜单
     const latestOpenKey = openKeys[openKeys.length - 1]
     if (latestOpenKey.includes(openKeys[0])) {
-      this.setState({
-        openKeys,
-      })
+      this.setState({ openKeys })
     } else {
       this.setState({
         openKeys: [latestOpenKey]
@@ -83,7 +82,7 @@ class Slider extends React.Component {
 
   render() {
     const {openKeys, selectedKeys} = this.state;
-    const defaultProps = this.props.collapsed ? {} : {openKeys};  // 代替openKeys 解决二级菜单收缩时不跟随问题
+    const defaultProps = this.props.collapsed ? {} : {openKeys};  // 代替openKeys 解决切换菜单时二级菜单收缩时不跟随问题
     return (
       <div>
         {/* <p style={{color: '#fff'}}>{openKeys} - {selectedKeys}</p> */}
@@ -97,7 +96,9 @@ class Slider extends React.Component {
           // openKeys={openKeys}
           selectedKeys={selectedKeys}
           theme={this.props.theme ? this.props.theme : 'light'}
-          mode='inline'>
+          mode='inline'
+          inlineCollapsed={this.props.collapsed}
+        >
           {
             menuList && menuList.map(item => {
               return item.subs && item.subs.length > 0 ? this.renderSubMenu(item) : this.renderMenuItem(item)
