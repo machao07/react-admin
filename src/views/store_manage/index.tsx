@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Table, Modal, Select, Tag, Popconfirm, message} from 'antd';
+import { Form, Input, Button, Table, Modal, Select, Tag, message} from 'antd';
 import { getList, enable } from 'api/store';
 import Tip from './component/tip';
+import Rules from './component/rule';
 
 const { Option } = Select
 
@@ -137,7 +138,7 @@ class Store extends Component<any, States> {
             const { title } = this.state;
             switch (title) {
                 case '结算规则':
-                    return ''
+                    return <Rules />
                     break;
                 case '店铺商品':
                     return ''
