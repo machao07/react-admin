@@ -27,6 +27,10 @@ const menuList =  [
       {
         title: '金币配置',
         key: 'gold',
+      },
+      {
+        title: '公告管理',
+        key: 'announcement',
       }
     ]
   },
