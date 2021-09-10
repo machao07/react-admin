@@ -1,10 +1,13 @@
 import React, { Component } from "react";
-import { Button, Empty } from "antd";
+import { Button, Empty, Modal } from "antd";
 import { getSellerId } from 'utils/storage';
 import { getNoticeList } from "api/configuration/announcement";
+import AnnounceCreate  from "./compoents/announceCreate";
 
 interface States {
     noticeData: any
+    visible: boolean
+    title: string
 }
 
 class Announcement extends Component<any, States> {
@@ -12,7 +15,9 @@ class Announcement extends Component<any, States> {
     constructor(props: any) {
         super(props);
         this.state = {
-            noticeData: undefined
+            noticeData: undefined,
+            visible: false,
+            title: '新增公告'
         }
     }
 
@@ -36,19 +41,29 @@ class Announcement extends Component<any, States> {
         }
     }
 
+    handelCreate() {
+        this.setState({
+            visible: true
+        })
+    }
+
     render() {
-        const { noticeData } = this.state
+        const { noticeData, visible, title } = this.state;
+        const handleCancel = () => {
+            this.setState({ visible: false })
+        };
+
         return (
             <div className="container">
                 <div className="ikd-page-header"><div className="title">公告管理</div></div>
-                <Button type="primary" style={{ marginBottom: 15 }}>添加公告</Button>
+                <Button type="primary" style={{ marginBottom: 15 }} onClick={this.handelCreate.bind(this)}>添加公告</Button>
                 <table className="ikd-input-table no-first">
                     <thead>
-                        <th className="tc" style={{width: 200}}>公司标题名称</th>
-                        <th className="tc" style={{width: 300}}>内容</th>
-                        <th className="tc" style={{width: 140}}>发布时间</th>
-                        <th className="tc" style={{width: 100}}>状态</th>
-                        <th className="tc" style={{width: 240}}>操作</th>
+                        <th className="tc" style={{ width: 200 }}>公司标题名称</th>
+                        <th className="tc" style={{ width: 300 }}>内容</th>
+                        <th className="tc" style={{ width: 140 }}>发布时间</th>
+                        <th className="tc" style={{ width: 100 }}>状态</th>
+                        <th className="tc" style={{ width: 240 }}>操作</th>
                     </thead>
                     <tbody>
                         {
@@ -73,6 +88,18 @@ class Announcement extends Component<any, States> {
                         }
                     </tbody>
                 </table>
+
+                <Modal title={title}
+                    width={'70%'}
+                    bodyStyle={{ lineHeight: '2.8' }}
+                    visible={visible}
+                    maskClosable={false}
+                    onCancel={handleCancel}
+                    footer={[
+                        <Button type="primary" key="back" onClick={handleCancel}>关闭</Button>
+                    ]}>
+                        <AnnounceCreate />
+                </Modal>
             </div>
         )
     }
