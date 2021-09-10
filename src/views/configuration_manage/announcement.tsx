@@ -95,10 +95,8 @@ class Announcement extends Component<any, States> {
                     visible={visible}
                     maskClosable={false}
                     onCancel={handleCancel}
-                    footer={[
-                        <Button type="primary" key="back" onClick={handleCancel}>关闭</Button>
-                    ]}>
-                        <AnnounceCreate />
+                    footer={null}>
+                        <AnnounceCreate onCancel={() => handleCancel()}/>
                 </Modal>
             </div>
         )

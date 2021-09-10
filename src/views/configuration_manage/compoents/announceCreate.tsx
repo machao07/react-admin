@@ -1,23 +1,29 @@
 import React, { Component } from "react";
-import { Form, Input } from "antd";
+import { Button, Form, Input } from "antd";
 import { getSellerId } from 'utils/storage';
 import { getNoticeList } from "api/configuration/announcement";
 import { FormInstance } from "antd/lib/form";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 interface Props {
     currentId?: string | number
+    onCancel: () => void
 }
 
 interface States {
-
+    content: string
 }
 
 class AnnounceCreate extends Component<Props, States>{
     type = 1;
+    reactQuillRef: any = null;
     form = React.createRef<FormInstance>()
     constructor(props: Props) {
         super(props);
-        this.state = {}
+        this.state = {
+            content: ''
+        }
     }
 
     componentDidMount() {
@@ -34,13 +40,26 @@ class AnnounceCreate extends Component<Props, States>{
         }).catch(() => { })
     }
 
+    handleChange(value: string) {
+        this.setState({ content: value })
+    }
+
     render() {
+        const layout = {
+            labelCol: { span: 3 },
+            wrapperCol: { span: 21 },
+        };
+        const tailLayout = {
+            wrapperCol: { offset: 20, span: 4 },
+        };
+
         const onFinish = (values: any) => {
             console.log(values)
         }
 
         return (
             <Form
+                {...layout}
                 onFinish={onFinish}>
                 <Form.Item
                     label="公司标题名称"
@@ -51,8 +70,16 @@ class AnnounceCreate extends Component<Props, States>{
                 <Form.Item
                     label="公司内容"
                     name="content"
+                    initialValue=""
                     rules={[{ required: true }]}>
-                    <Input className="w300" />
+                    <ReactQuill
+                        ref={(el) => { this.reactQuillRef = el }}
+                        value={this.state.content}
+                        onChange={this.handleChange.bind(this)} />
+                </Form.Item>
+                <Form.Item {...tailLayout}>
+                    <Button onClick={() => this.props.onCancel()}>取消</Button>
+                    <Button className="ml20" type="primary" htmlType="submit">确定</Button>
                 </Form.Item>
             </Form>
         )
