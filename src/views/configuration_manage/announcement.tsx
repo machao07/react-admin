@@ -44,11 +44,11 @@ class Announcement extends Component<any, States> {
                 <Button type="primary" style={{ marginBottom: 15 }}>添加公告</Button>
                 <table className="ikd-input-table no-first">
                     <thead>
-                        <th className="tc">公司标题名称</th>
-                        <th className="tc">内容</th>
-                        <th className="tc">发布时间</th>
-                        <th className="tc">状态</th>
-                        <th className="tc">操作</th>
+                        <th className="tc" style={{width: 200}}>公司标题名称</th>
+                        <th className="tc" style={{width: 300}}>内容</th>
+                        <th className="tc" style={{width: 140}}>发布时间</th>
+                        <th className="tc" style={{width: 100}}>状态</th>
+                        <th className="tc" style={{width: 240}}>操作</th>
                     </thead>
                     <tbody>
                         {
@@ -59,10 +59,10 @@ class Announcement extends Component<any, States> {
                                     <td className="tc">{noticeData.statusAt}</td>
                                     <td className="tc">{this.getStatusText(noticeData.status)}</td>
                                     <td className="tc">
-                                        <Button type="text">启用</Button>
-                                        <Button type="text">禁用</Button>
-                                        <Button type="text">编辑</Button>
-                                        <Button type="text">删除</Button>
+                                        <Button type="link">启用</Button>
+                                        <Button type="link">禁用</Button>
+                                        <Button type="link">编辑</Button>
+                                        <Button type="link">删除</Button>
                                     </td>
                                 </tr> :
                                 <tr>
