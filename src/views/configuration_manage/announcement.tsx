@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, Empty, Modal } from "antd";
 import { getSellerId } from 'utils/storage';
 import { getNoticeList } from "api/configuration/announcement";
-import AnnounceCreate  from "./compoents/announceCreate";
+import AnnounceCreate from "./compoents/announceCreate";
 
 interface States {
     noticeData: any
@@ -71,7 +71,7 @@ class Announcement extends Component<any, States> {
                                 <tr>
                                     <td className="tc">{noticeData.name}</td>
                                     <td className="tc" dangerouslySetInnerHTML={{ __html: noticeData.content }}></td>
-                                    <td className="tc">{noticeData.statusAt}</td>
+                                    <td className="tc">{noticeData.statusAt ? new Date(noticeData.statusAt * 1000).toLocaleString() : '-----'}</td>
                                     <td className="tc">{this.getStatusText(noticeData.status)}</td>
                                     <td className="tc">
                                         <Button type="link">启用</Button>
@@ -96,7 +96,7 @@ class Announcement extends Component<any, States> {
                     maskClosable={false}
                     onCancel={handleCancel}
                     footer={null}>
-                        <AnnounceCreate onCancel={() => handleCancel()}/>
+                    <AnnounceCreate onCancel={() => handleCancel()} />
                 </Modal>
             </div>
         )
