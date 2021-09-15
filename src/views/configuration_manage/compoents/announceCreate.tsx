@@ -5,17 +5,14 @@ import { getNoticeList } from "api/configuration/announcement";
 import { FormInstance } from "antd/lib/form";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import ReactQillWrap from 'components/reactQuill'
 
 interface Props {
     currentId?: string | number
     onCancel: () => void
 }
 
-interface States {
-    content: string
-}
-
-class AnnounceCreate extends Component<Props, States>{
+class AnnounceCreate extends Component<Props, any>{
     type = 1;
     reactQuillRef: any = null;
     form = React.createRef<FormInstance>()
@@ -71,11 +68,9 @@ class AnnounceCreate extends Component<Props, States>{
                     label="公司内容"
                     name="content"
                     initialValue=""
-                    rules={[{ required: true }]}>
-                    <ReactQuill
-                        ref={(el) => { this.reactQuillRef = el }}
-                        value={this.state.content}
-                        onChange={this.handleChange.bind(this)} />
+                    rules={[{ required: true }]}
+                    >
+                    <ReactQillWrap onChange={this.handleChange.bind(this)} />
                 </Form.Item>
                 <Form.Item {...tailLayout}>
                     <Button onClick={() => this.props.onCancel()}>取消</Button>
