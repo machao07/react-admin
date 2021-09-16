@@ -24,7 +24,7 @@ export function addNotice(targetId: number | string, type: number, obj: any) {
 /* 
 * 公告启用
 */
-export function enable(targetId: number | string, type: number, id: number | string, status: string) {
+export function enable(targetId: number | string, type: number, id: number | string, status: number) {
     return axios({
         url: '/seller/na/wx/setting/notice/' + targetId + '/' + type + '/' + id,
         method: 'put',
@@ -37,7 +37,7 @@ export function enable(targetId: number | string, type: number, id: number | str
 /* 
 * 公告禁用
 */
-export function disable(targetId: number | string, type: number, id: number | string, status: string) {
+export function disable(targetId: number | string, type: number, id: number | string, status: number) {
     return axios({
         url: '/seller/na/wx/setting/notice/' + targetId + '/' + type + '/' + id,
         method: 'put',

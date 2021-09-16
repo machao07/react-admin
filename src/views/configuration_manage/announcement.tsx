@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Button, Empty, Modal } from "antd";
+import { Button, Empty, Modal, notification, Popconfirm } from "antd";
 import { getSellerId } from 'utils/storage';
-import { getNoticeList } from "api/configuration/announcement";
+import { delNotice, disable, enable, getNoticeList } from "api/configuration/announcement";
 import AnnounceCreate from "./compoents/announceCreate";
 
 interface States {
@@ -29,7 +29,11 @@ class Announcement extends Component<any, States> {
 
     getList() {
         getNoticeList(getSellerId(), this.type).then((res) => {
-            this.setState({ noticeData: res.data[0] })
+            if(res.data){
+                this.setState({ noticeData: res.data[0] })
+            }else{
+                this.setState({ noticeData: undefined })
+            }
         }).catch(() => { })
     }
 
@@ -53,6 +57,36 @@ class Announcement extends Component<any, States> {
             title: '编辑公告',
             current: item
         })
+    }
+
+    handleEnable(item: any) {
+        enable(getSellerId(), this.type, item.id, 1).then((res) => {
+            notification.success({
+                message: '成功',
+                description: '启用成功'
+            })
+            this.getList()
+        }).catch(() => { })
+    }
+
+    handleDisable(item: any) {
+        disable(getSellerId(), this.type, item.id, 0).then((res) => {
+            notification.success({
+                message: '成功',
+                description: '禁用成功'
+            });
+            this.getList()
+        }).catch(() => { })
+    }
+
+    handleDel(item: any) {
+        delNotice(getSellerId(), this.type, item.id).then(res => {
+            notification.success({
+                message: '成功',
+                description: '删除公告成功',
+            });
+            this.getList()
+        }).catch(() => { })
     }
 
     render() {
@@ -85,10 +119,37 @@ class Announcement extends Component<any, States> {
                                     <td className="tc">{noticeData.statusAt ? new Date(noticeData.statusAt * 1000).toLocaleString() : '-----'}</td>
                                     <td className="tc">{this.getStatusText(noticeData.status)}</td>
                                     <td className="tc">
-                                        <Button type="link">启用</Button>
-                                        <Button type="link">禁用</Button>
-                                        <Button type="link" onClick={() => this.handelUpdate(noticeData)}>编辑</Button>
-                                        <Button type="link">删除</Button>
+                                        {
+                                            noticeData.status === 0 ?
+                                                <Popconfirm
+                                                    title="您正在进行启用操作，是否继续进行？"
+                                                    onConfirm={() => this.handleEnable(noticeData)}
+                                                    okText="确定"
+                                                    cancelText="取消">
+                                                    <Button type="link">启用</Button>
+                                                </Popconfirm> : null
+                                        }
+                                        {
+                                            noticeData.status === 1 ?
+                                                <Popconfirm
+                                                    title="禁用后改公告将不再前台展示，是否继续进行？"
+                                                    onConfirm={() => this.handleDisable(noticeData)}
+                                                    okText="确定"
+                                                    cancelText="取消">
+                                                    <Button type="link">禁用</Button>
+                                                </Popconfirm> : null
+                                        }
+                                        {
+                                            noticeData.status === 0 ?
+                                                <Button type="link" onClick={() => this.handelUpdate(noticeData)}>编辑</Button> : null
+                                        }
+                                        <Popconfirm
+                                            title="此操作将永久删除, 是否继续?"
+                                            onConfirm={() => this.handleDel(noticeData)}
+                                            okText="确定"
+                                            cancelText="取消">
+                                            <Button type="link">删除</Button>
+                                        </Popconfirm>
                                     </td>
                                 </tr> :
                                 <tr>

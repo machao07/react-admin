@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Button, Form, Input, message } from "antd";
+import { Button, Form, Input, notification } from "antd";
 import { getSellerId } from 'utils/storage';
-import { getNoticeList, addNotice } from "api/configuration/announcement";
+import { addNotice } from "api/configuration/announcement";
 import { FormInstance } from "antd/lib/form";
 import ReactQillWrap from 'components/reactQuill';
 
@@ -57,7 +57,10 @@ class AnnounceCreate extends Component<Props, States>{
                 msg = '添加公告成功'
             }
             addNotice(getSellerId(), this.type, obj).then(res => {
-                message.success(msg)
+                notification.success({
+                    message:'成功',
+                    description: msg
+                })
                 this.props.onCancel();
                 this.props.onData();
             }).catch(() => { })
