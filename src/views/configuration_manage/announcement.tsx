@@ -8,6 +8,7 @@ interface States {
     noticeData: any
     visible: boolean
     title: string
+    current: any
 }
 
 class Announcement extends Component<any, States> {
@@ -17,7 +18,8 @@ class Announcement extends Component<any, States> {
         this.state = {
             noticeData: undefined,
             visible: false,
-            title: '新增公告'
+            title: '新增公告',
+            current: {}
         }
     }
 
@@ -42,13 +44,19 @@ class Announcement extends Component<any, States> {
     }
 
     handelCreate() {
+        this.setState({ visible: true })
+    }
+
+    handelUpdate(item: any) {
         this.setState({
-            visible: true
+            visible: true,
+            title: '编辑公告',
+            current: item
         })
     }
 
     render() {
-        const { noticeData, visible, title } = this.state;
+        const { noticeData, visible, title, current } = this.state;
         const handleCancel = () => {
             this.setState({ visible: false })
         };
@@ -56,7 +64,10 @@ class Announcement extends Component<any, States> {
         return (
             <div className="container">
                 <div className="ikd-page-header"><div className="title">公告管理</div></div>
-                <Button type="primary" style={{ marginBottom: 15 }} onClick={this.handelCreate.bind(this)}>添加公告</Button>
+                {
+                    noticeData ? null :
+                        <Button type="primary" style={{ marginBottom: 15 }} onClick={this.handelCreate.bind(this)}>添加公告</Button>
+                }
                 <table className="ikd-input-table no-first">
                     <thead>
                         <th className="tc" style={{ width: 200 }}>公司标题名称</th>
@@ -76,7 +87,7 @@ class Announcement extends Component<any, States> {
                                     <td className="tc">
                                         <Button type="link">启用</Button>
                                         <Button type="link">禁用</Button>
-                                        <Button type="link">编辑</Button>
+                                        <Button type="link" onClick={() => this.handelUpdate(noticeData)}>编辑</Button>
                                         <Button type="link">删除</Button>
                                     </td>
                                 </tr> :
@@ -96,7 +107,10 @@ class Announcement extends Component<any, States> {
                     maskClosable={false}
                     onCancel={handleCancel}
                     footer={null}>
-                    <AnnounceCreate onCancel={() => handleCancel()} />
+                    <AnnounceCreate
+                        current={current}
+                        onCancel={() => handleCancel()}
+                        onData={() => this.getList()} />
                 </Modal>
             </div>
         )

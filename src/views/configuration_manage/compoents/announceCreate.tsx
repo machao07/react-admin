@@ -1,18 +1,20 @@
 import React, { Component } from "react";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
 import { getSellerId } from 'utils/storage';
-import { getNoticeList } from "api/configuration/announcement";
+import { getNoticeList, addNotice } from "api/configuration/announcement";
 import { FormInstance } from "antd/lib/form";
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import ReactQillWrap from 'components/reactQuill'
+import ReactQillWrap from 'components/reactQuill';
 
 interface Props {
-    currentId?: string | number
+    current?: any
     onCancel: () => void
+    onData: () => void
+}
+interface States {
+    content: string
 }
 
-class AnnounceCreate extends Component<Props, any>{
+class AnnounceCreate extends Component<Props, States>{
     type = 1;
     reactQuillRef: any = null;
     form = React.createRef<FormInstance>()
@@ -24,17 +26,13 @@ class AnnounceCreate extends Component<Props, any>{
     }
 
     componentDidMount() {
-        this.getData()
-    }
-
-    getData() {
-        getNoticeList(getSellerId(), this.type).then((res) => {
-            const data = res.data[0];
+        const currentItem = this.props.current;
+        if (currentItem) {
             this.form.current?.setFieldsValue({
-                name: data.name,
-                content: data.content
+                name: currentItem.name,
+                content: currentItem.content
             })
-        }).catch(() => { })
+        }
     }
 
     handleChange(value: string) {
@@ -51,12 +49,24 @@ class AnnounceCreate extends Component<Props, any>{
         };
 
         const onFinish = (values: any) => {
-            console.log(values)
+            let msg: string;
+            const obj = { targetId: getSellerId(), type: this.type, ...values }
+            if (this.props.current) {
+                msg = '更新公告成功'
+            } else {
+                msg = '添加公告成功'
+            }
+            addNotice(getSellerId(), this.type, obj).then(res => {
+                message.success(msg)
+                this.props.onCancel();
+                this.props.onData();
+            }).catch(() => { })
         }
 
         return (
             <Form
                 {...layout}
+                ref={this.form}
                 onFinish={onFinish}>
                 <Form.Item
                     label="公司标题名称"
@@ -69,12 +79,16 @@ class AnnounceCreate extends Component<Props, any>{
                     name="content"
                     initialValue=""
                     rules={[{ required: true }]}
-                    >
+                >
                     <ReactQillWrap onChange={this.handleChange.bind(this)} />
                 </Form.Item>
                 <Form.Item {...tailLayout}>
                     <Button onClick={() => this.props.onCancel()}>取消</Button>
-                    <Button className="ml20" type="primary" htmlType="submit">确定</Button>
+                    {
+                        this.props.current ?
+                            <Button className="ml20" type="primary" htmlType="submit">保存</Button> :
+                            <Button className="ml20" type="primary" htmlType="submit">确定</Button>
+                    }
                 </Form.Item>
             </Form>
         )
