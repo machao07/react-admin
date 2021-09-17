@@ -15,7 +15,12 @@ Quill.register({
     // 'modules/ImageExtend': ImageExtend, //拖拽图片扩展组件
 }, true);
 
-class ReactQuillWrap extends Component<any, any>{
+interface Props {
+    value: string
+    onChange: (value: string) => void
+}
+
+class ReactQuillWrap extends Component<Props, any>{
     reactQuillRef: any = null;
     modules: any = {
         toolbar: {
@@ -75,6 +80,7 @@ class ReactQuillWrap extends Component<any, any>{
     render() {
         return (
             <ReactQuill
+                value={this.props.value}
                 modules={this.modules}
                 ref={(el) => { this.reactQuillRef = el }}
                 onChange={this.props.onChange.bind(this)}

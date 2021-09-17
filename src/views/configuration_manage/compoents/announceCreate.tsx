@@ -32,6 +32,7 @@ class AnnounceCreate extends Component<Props, States>{
                 name: currentItem.name,
                 content: currentItem.content
             })
+            // this.setState({content: currentItem.content})
         }
     }
 
@@ -83,7 +84,7 @@ class AnnounceCreate extends Component<Props, States>{
                     initialValue=""
                     rules={[{ required: true }]}
                 >
-                    <ReactQillWrap onChange={this.handleChange.bind(this)} />
+                    <ReactQillWrap value={this.state.content} onChange={this.handleChange.bind(this)} />
                 </Form.Item>
                 <Form.Item {...tailLayout}>
                     <Button onClick={() => this.props.onCancel()}>取消</Button>
