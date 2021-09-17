@@ -32,7 +32,6 @@ class AnnounceCreate extends Component<Props, States>{
                 name: currentItem.name,
                 content: currentItem.content
             })
-            // this.setState({content: currentItem.content})
         }
     }
 

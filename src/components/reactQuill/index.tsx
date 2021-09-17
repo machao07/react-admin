@@ -4,6 +4,9 @@ import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import quillEmoji from 'quill-emoji';
 import "quill-emoji/dist/quill-emoji.css";
+import { message } from "antd";
+import { uploadSubmit } from "api/upload";
+import { getSellerId } from 'utils/storage';
 
 const { EmojiBlot, ShortNameEmoji, ToolbarEmoji, TextAreaEmoji } = quillEmoji;
 
@@ -63,9 +66,9 @@ class ReactQuillWrap extends Component<Props, any>{
                 ['emoji'], //emoji表情，设置了才能显示
                 ['video2'], //我自定义的视频图标，和插件提供的不一样，所以设置为video2
             ],
-            // handlers: {
-            //     'image': this.imageHandler.bind(this), //点击图片标志会调用的方法
-            // },
+            handlers: {
+                'image': this.imageHandler.bind(this), //点击图片标志会调用的方法
+            },
         },
         // ImageDrop: true,
         'emoji-toolbar': true,  // 是否展示出来
@@ -86,6 +89,29 @@ class ReactQuillWrap extends Component<Props, any>{
                 onChange={this.props.onChange.bind(this)}
             />
         )
+    }
+
+    imageHandler() {
+        const input = document.createElement('input');
+        input.setAttribute('type', 'file');
+        input.setAttribute('accept', 'image/*');
+        input.click();
+        input.onchange = () => {
+            const file = input.files ? input.files[0] : '';
+            const fd = new FormData();
+            fd.append('file', file);
+            // const hide = message.loading('上传中...', 0);
+            uploadSubmit(getSellerId(), fd).then((res: any) => {
+                console.log('res===', res)
+                if (res?.code === '0') {
+                    let quill = this.reactQuillRef.getEditor(); // 获取到编辑器本身
+                    const cursorPosition = quill.getSelection().index; // 获取当前光标位置
+                    quill.insertEmbed(cursorPosition, "image", res.url); // 插入图片 
+                    quill.setSelection(cursorPosition + 1); // 光标位置加1
+                    // hide();
+                }
+            });
+        };
     }
 }
 
