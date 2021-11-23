@@ -55,6 +55,17 @@ const menuList = [
                 key: 'store',
             }
         ]
+    },
+    {
+        title: '提现管理',
+        key: 'withdrawal_manage',
+        icon: 'icon-withdrawal',
+        subs: [
+            {
+                title: '提现规则',
+                key: 'store',
+            }
+        ]
     }
 ]
 
