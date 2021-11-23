@@ -72,10 +72,8 @@ class Coupon extends Component<Props, State>{
     render() {
         const onFinish = (values: object) => {
             const { activityName, memberName, mobile } = JSON.parse(JSON.stringify(values))
-            const _listQuery = Object.assign({}, this.state.listQuery, { activityName, memberName, mobile })
-            this.setState({
-                listQuery: _listQuery
-            })
+            const _listQuery = {...this.state.listQuery, activityName, memberName, mobile}
+            this.setState({ listQuery: _listQuery })
             this.getListApi(this.state.listQuery)
             // console.log(this.state.listQuery)
         }
@@ -83,16 +81,12 @@ class Coupon extends Component<Props, State>{
             console.log('failes', errorInfo)
         }
         const onChange = (date: any, dateString: any) => {
-            const newListQuery = Object.assign({}, this.state.listQuery, { payStart: dateString[0], payEnd: dateString[1] })
-            this.setState({
-                listQuery: newListQuery
-            })
+            const newListQuery = { ...this.state.listQuery, payStart: dateString[0], payEnd: dateString[1] }
+            this.setState({ listQuery: newListQuery })
         }
         const onChangeClose = (date: any, dateString: any) => {
-            const newListQuery = Object.assign({}, this.state.listQuery, { closeStart: dateString[0], closeEnd: dateString[1] })
-            this.setState({
-                listQuery: newListQuery
-            })
+            const newListQuery = { ...this.state.listQuery, closeStart: dateString[0], closeEnd: dateString[1] }
+            this.setState({ listQuery: newListQuery })
         }
         const columns: any = [
             { title: '券ID', dataIndex: 'couponId', key: 'orderId', align: 'center', width: 180 },
@@ -128,18 +122,21 @@ class Coupon extends Component<Props, State>{
             }
         ];
         // 分页切换
-        const changePage = (current: number) => {
-            // console.log(current)
-            const query = Object.assign({}, this.state.listQuery, { page: current })
+        const changePage = (current: number, pageSize?: number) => {
+            const query = { ...this.state.listQuery, page: current, num: pageSize || 20}
             console.log('query', query)
             setTimeout(() => {
-                this.setState({
-                    listQuery: query
-                })
-                // console.log(this.state.listQuery)
+                this.setState({ listQuery: query })
                 this.getListApi(this.state.listQuery)
             }, 0)
         }
+        // 多少每页
+        const selectchange = (page: number, num: number) => {
+            const query = { ...this.state.listQuery, page, num }
+            this.setState({ listQuery: query })
+            this.getListApi(query);
+        }
+
         const { list, loading } = this.state;
         // 详情model
         const handleCancel = () => {
@@ -201,6 +198,7 @@ class Coupon extends Component<Props, State>{
                         showQuickJumper: true,
                         showSizeChanger: true,
                         showTotal: total => `共 ${total} 条`,
+                        onShowSizeChange: selectchange,
                         onChange: changePage
                     }} />
                 {/* 查看详情 */}

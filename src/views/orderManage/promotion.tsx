@@ -72,10 +72,8 @@ class Promotion extends React.Component<Props, State>{
     render() {
         const onFinish = (values: object) => {
             const { activityName, memberName, mobile } = JSON.parse(JSON.stringify(values))
-            const _listQuery = Object.assign({}, this.state.listQuery, { activityName, memberName, mobile })
-            this.setState({
-                listQuery: _listQuery
-            })
+            const _listQuery = { ...this.state.listQuery, activityName, memberName, mobile }
+            this.setState({ listQuery: _listQuery })
             this.getListApi(this.state.listQuery)
             // console.log(this.state.listQuery)
         }
@@ -83,10 +81,8 @@ class Promotion extends React.Component<Props, State>{
             console.log('failes', errorInfo)
         }
         const onChange = (date: any, dateString: any) => {
-            const newListQuery = Object.assign({}, this.state.listQuery, { start: dateString[0], end: dateString[1] })
-            this.setState({
-                listQuery: newListQuery
-            })
+            const newListQuery = { ...this.state.listQuery, start: dateString[0], end: dateString[1] }
+            this.setState({ listQuery: newListQuery })
         }
         const columns: any = [
             { title: '订单编号', dataIndex: 'orderId', key: 'orderId', align: 'center', width: 180 },
@@ -117,25 +113,28 @@ class Promotion extends React.Component<Props, State>{
             }
         ];
         // 分页切换
-        const changePage = (current: number) => {
-            // console.log(current)
-            const query = Object.assign({}, this.state.listQuery, { page: current })
+        const changePage = (current: number, pageSize?: number) => {
+            const query = { ...this.state.listQuery, page: current, num: pageSize || 20 }
             console.log('query', query)
             setTimeout(() => {
-                this.setState({
-                    listQuery: query
-                })
-                // console.log(this.state.listQuery)
+                this.setState({ listQuery: query })
                 this.getListApi(this.state.listQuery)
             }, 0)
         }
-        const { list, loading } = this.state;
+
+        // 多少每页
+        const selectchange = (page: number, num: number) => {
+            const query = { ...this.state.listQuery, page, num }
+            this.setState({ listQuery: query })
+            this.getListApi(query);
+        }
+
         // 详情model
         const handleCancel = () => {
-            this.setState({
-                detailVisible: false
-            })
+            this.setState({ detailVisible: false })
         };
+
+        const { list, loading } = this.state;
         return (
             <div className="container">
                 {/* {JSON.stringify(this.state.listQuery)} */}
@@ -180,6 +179,7 @@ class Promotion extends React.Component<Props, State>{
                         showQuickJumper: true,
                         showSizeChanger: true,
                         showTotal: total => `共 ${total} 条`,
+                        onShowSizeChange: selectchange,
                         onChange: changePage
                     }} />
                 {/* 查看详情 */}
