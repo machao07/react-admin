@@ -13,6 +13,11 @@ class App extends React.Component {
     onCollapse = (collapsed: boolean) => {
         this.setState({ collapsed });
     };
+
+    changeCollapse (value: boolean) {
+        this.setState({collapsed: value})
+    }
+
     render() {
         const { collapsed } = this.state;
         return (
@@ -21,7 +26,7 @@ class App extends React.Component {
                     <Slider collapsed={collapsed} />
                 </Sider>
                 <Layout className="site-layout">
-                    <Header collapsed={collapsed} />
+                    <Header changeCollapse={this.changeCollapse.bind(this)} />
                     <Content className={collapsed === true ? 'noLeft' : 'left'} style={{ position: 'absolute', top: 70, right: 0, bottom: 0 }}>
                         <ContentMain />
                     </Content>

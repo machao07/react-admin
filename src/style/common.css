@@ -143,12 +143,20 @@ body {
     cursor: pointer;
 }
 
+.logoSmall{
+    text-align: center;
+    padding: 10px 0;
+    font-weight: 600;
+    width: 80px
+}
 .logo {
   float: left;
   width: 180px;
   line-height: 70px;
   height: 70px;
   position: relative;
+  text-align: center;
+  font-weight: 600;
 }
 
 .logo img {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
+import { NavLink } from "react-router-dom";
 import { Menu, Dropdown } from 'antd';
 import { UserOutlined, CaretDownOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { removeToken } from 'api/token';
@@ -10,21 +10,23 @@ interface States {
     collapsed: boolean
 }
 
-class Header extends React.Component<any, States> {
-    constructor(props: any) {
+interface Props {
+    changeCollapse: (value: boolean) => void
+}
+
+class Header extends React.Component<Props, States> {
+    constructor(props: Props) {
         super(props);
         this.state = {
             collapsed: false
         }
     }
-    // shouldComponentUpdate(nextProps, nextState) {
-    //   console.log('nextProps====', nextProps)
-    //   console.log('nextState====', nextState)
-    //   return nextState.collapsed !== this.state.collapsed
-    // }
+
     toggle = () => {
         this.setState({
             collapsed: !this.state.collapsed,
+        }, function () {
+            this.props.changeCollapse(this.state.collapsed)
         });
     }
     render() {
@@ -33,19 +35,13 @@ class Header extends React.Component<any, States> {
             const { key } = value;
             if (key === 'layout') {
                 removeToken()
-                this.props.history.push({
-                    pathname: 'login'
-                })
-            }
-            if (key === 'modify') {
-                this.props.history.push('modify')
             }
         }
 
         const menu = (
             <Menu onClick={handleMenuClick}>
-                <Menu.Item key="modify">修改密码</Menu.Item>
-                <Menu.Item key="layout">退出登录</Menu.Item>
+                <Menu.Item key="modify"><NavLink to="/modify">修改密码</NavLink></Menu.Item>
+                <Menu.Item key="layout"><NavLink to="/login">退出登录</NavLink></Menu.Item>
             </Menu>
         )
 
@@ -72,4 +68,4 @@ class Header extends React.Component<any, States> {
     }
 }
 
-export default withRouter(Header);
+export default Header 

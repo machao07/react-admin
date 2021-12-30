@@ -86,9 +86,16 @@ class Slider extends React.Component {
         return (
             <div>
                 {/* <p style={{color: '#fff'}}>{openKeys} - {selectedKeys}</p> */}
-                <div className="logo">
-                    <img src={require('../../assets/logo_left.png')} alt="" />
-                </div>
+
+                {
+                    this.props.collapsed ?
+                        <div className='logoSmall'>LOGO</div> :
+                        <div className="logo">
+                            <p>重构项目LOGO</p>
+                            {/* <img src={require('../../assets/logo_left.png')} alt="" /> */}
+                        </div>
+                }
+
                 <Menu
                     {...defaultProps}
                     onClick={this.handleMenu}
