@@ -1,14 +1,14 @@
 import React from 'react'
 import { Form, Input, Button, notification } from 'antd';
 import { modifyPassword } from 'api/home'
- 
-class ModifyPassword extends React.Component{
+
+class ModifyPassword extends React.Component {
     state = {
         oldPassWord: undefined,
         newPassWord: undefined,
         re_newPassWord: undefined
     }
-    render(){
+    render() {
         const layout = {
             labelCol: { span: 6 },
             wrapperCol: { span: 18 },
@@ -19,20 +19,20 @@ class ModifyPassword extends React.Component{
         const reRule = [
             { required: true, message: '密码不能为空' },
             {
-                validator: async (rule, value) => {
+                validator: async (rule: any, value: any) => {
                     console.log(value)
                     console.log(this.state.newPassWord)
-                    if(value ===''){
+                    if (value === '') {
                         throw new Error('请再次输入密码')
-                    }else if(value !== this.state.newPassWord){
+                    } else if (value !== this.state.newPassWord) {
                         throw new Error('两次输入的密码不一致')
-                    }else{
+                    } else {
                         throw new Error()
                     }
                 }
             }
         ]
-        const onFinish = values => {
+        const onFinish = (values: any) => {
             modifyPassword(values).then(() => {
                 notification.open({
                     message: '成功',
@@ -41,16 +41,13 @@ class ModifyPassword extends React.Component{
                 })
             })
         }
-        const onFinishFailed = errorInfo => {
-            console.log('failes', errorInfo)
-        }
         return (
             <div className="container">
                 <Form
                     {...layout}
                     name="basic"
                     onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}>
+                >
                     <Form.Item
                         label="原始密码："
                         name="oldPassWord"
@@ -69,7 +66,7 @@ class ModifyPassword extends React.Component{
                         label="确认新密码："
                         name="re_newPassWord"
                         rules={reRule}>
-                        <Input.Password className="w300" placeholder="请输入确认新密码"  />
+                        <Input.Password className="w300" placeholder="请输入确认新密码" />
                     </Form.Item>
 
                     <Form.Item {...tailLayout}>
