@@ -11,8 +11,8 @@ import 'moment/locale/zh-cn';
 moment.locale('zh-cn');
 
 ReactDOM.render(
-  <ConfigProvider locale={zhCN}>
-    <MRoute />
-  </ConfigProvider>,
-  document.getElementById('root')
+    <ConfigProvider locale={zhCN}>
+        <MRoute />
+    </ConfigProvider>,
+    document.getElementById('root')
 );

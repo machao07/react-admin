@@ -98,9 +98,14 @@ body {
   transition: left .1s ease-in-out;
 }
 
+.footer{
+    text-align: center;
+    padding: 15px 50px!important;
+}
+
 .content{
   width: auto;
-  padding: 10px;
+  padding: 15px 15px 20px 15px;
   height: 100%;
   overflow-y: scroll;
   -webkit-box-sizing: border-box;
