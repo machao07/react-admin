@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input } from 'antd';
 
 class Rule extends Component {
     render(){

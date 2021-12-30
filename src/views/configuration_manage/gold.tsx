@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 import { Form, Input, Button, notification } from 'antd';
 import { getSellerId } from 'utils/storage';
 import { getCoin, addCoin } from 'api/configuration/gold';
-
-
 class Gold extends Component<any, any> {
-    constructor(props: any) {
-        super(props)
-    }
     componentDidMount() {
         this.getCoin()
     }

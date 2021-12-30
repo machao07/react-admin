@@ -133,6 +133,11 @@ body {
   line-height: 1.8;
 }
 
+.link{
+    color:#f45f04;
+    cursor: pointer;
+}
+
 .logo {
   float: left;
   width: 180px;

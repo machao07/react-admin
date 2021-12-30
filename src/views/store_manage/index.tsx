@@ -91,7 +91,7 @@ class Store extends Component<any, States> {
             {
                 title: '店铺头像', dataIndex: 'logo', key: 'logo', align: 'center', width: 120,
                 render: (text: any, record: any) => {
-                    return <img className="avatar" src={record.logo} ></img>
+                    return <img alt={record.name} className="avatar" src={record.logo} ></img>
                 }
             },
             {
@@ -122,17 +122,17 @@ class Store extends Component<any, States> {
                 fixed: 'right',
                 width: 200,
                 render: (text: any, record: any) => [
-                    <a className="mr10" onClick={() => {
+                    <span className="mr10 link" onClick={() => {
                         let _modalText = '确定禁用?'
                         if (record.status === 3) _modalText = '确定启用?'
                         this.setState({ title: '提示', modalText: _modalText, modalWidth: 400, visible: true, currentRow: record })
-                    }}>{record.status === 1 ? '禁用' : '启用'}</a>,
-                    <a className="mr10" onClick={() => {
+                    }}>{record.status === 1 ? '禁用' : '启用'}</span>,
+                    <span className="mr10 link" onClick={() => {
                         this.setState({ title: '结算规则', visible: true, modalWidth: 800 })
-                    }}>结算规则</a>,
-                    <a onClick={() => {
+                    }}>结算规则</span>,
+                    <span className='link' onClick={() => {
                         this.setState({ title: '店铺商品', visible: true, modalWidth: '85%' })
-                    }}>店铺商品</a>
+                    }}>店铺商品</span>
                 ]
             }
         ];

@@ -109,7 +109,7 @@ class Promotion extends React.Component<Props, State>{
                 align: 'center',
                 fixed: 'right',
                 width: 100,
-                render: (text: any, record: any) => <a onClick={() => { this.handleDetail(text, record) }}>查看</a>,
+                render: (text: any, record: any) => <p className='link' onClick={() => { this.handleDetail(text, record) }}>查看</p>,
             }
         ];
         // 分页切换

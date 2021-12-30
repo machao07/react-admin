@@ -4,7 +4,6 @@ import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import quillEmoji from 'quill-emoji';
 import "quill-emoji/dist/quill-emoji.css";
-import { message } from "antd";
 import { uploadSubmit } from "api/upload";
 import { getSellerId } from 'utils/storage';
 

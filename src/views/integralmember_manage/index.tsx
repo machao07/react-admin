@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import Rule from './component/rule';
 
 class IntegralRule extends Component<any ,any> {
-    constructor(props: any){
-        super(props)
-    }
     render(){
         return(
             <div className="container">
