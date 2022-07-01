@@ -69,14 +69,15 @@ class Login extends React.Component<any, any> {
         return (
             <div className="wrap">
                 <div className="header">
-                    <img src={require("../../assets/logo.png")} className="logo" alt="" />
+                    {/* <img src={require("../../assets/logo.png")} className="logo" alt="" /> */}
+                    <span>某某某</span>
                     <span className="companyName">商户中心</span>
                 </div>
 
                 <div className="login-box">
                     <div className="login-main">
                         <div className="login-tab">
-                            <h2 className="login-h">Hi，欢迎登录惠联生花商户管理平台！</h2>
+                            <h2 className="login-h">Hi，欢迎登录商户管理平台！</h2>
                             <Form
                                 {...layout}
                                 name="basic"
@@ -101,12 +102,12 @@ class Login extends React.Component<any, any> {
                                     label=""
                                     name="password"
                                     rules={[{ required: true, message: '密码不能为空' }]}>
-                                    <Input.Password placeholder="请输入密码" prefix={<LockFilled />} />
+                                    <Input.Password placeholder="请输入密码" autoComplete="new-password" prefix={<LockFilled />} />
                                 </Form.Item>
 
                                 {/* <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-                  <Checkbox>记住</Checkbox>
-                </Form.Item> */}
+                                <Checkbox>记住</Checkbox>
+                                </Form.Item> */}
 
                                 <Form.Item {...tailLayout}>
                                     <Button style={{ width: '100%' }} type="primary" htmlType="submit">登录</Button>
@@ -117,8 +118,8 @@ class Login extends React.Component<any, any> {
                 </div>
 
                 <div className="footer">
-                    Copyright © 1994-2019 南京云惠联科技有限公司 All Rights Reserved.<br />
-                    备案号：苏ICP备19006197号 联系方式：025-58856499
+                    Copyright © 1994-2022 南京xxxx有限公司 All Rights Reserved.<br />
+                    备案号：苏ICP备199xxxx号 联系方式：025-xxxxxx
                 </div>
             </div>
         )

@@ -314,7 +314,7 @@ class Home extends React.Component <{}, State>{
                                 </div>
                                 <div className="text tc">
                                     <IconFont className="fontStyle" type="icon-zengjiarenyuan" style={{ color: '#2489F3' }} />
-                                    <p className="fontStyle ml15" style={{ color: '#2489F3' }}>{memberdData.todayMemberCount}</p>
+                                    <p className="fontStyle ml15" style={{ color: '#2489F3' }}>{memberdData.allMemberCount}</p>
                                 </div>
                             </Card>
                         </Col>
